@@ -11,6 +11,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import session.ArticlesFacade;
 
 /**
  *
@@ -21,33 +22,42 @@ import javax.inject.Named;
 public class Articles {
 
     @Inject 
-    ArticleBean article;
+    ArticlesFacade article;
 
     public Articles() {     
         
     }
     
     public List<ArticleDef> viewAll(){
+        List<entity.Articles> arts = article.findAll();
         List<ArticleDef> res = new ArrayList();
-        List<String> tmp = article.viewAll();
-        String[] tstmp;
-        String stmp;
-        for(String s : tmp){
-            tstmp = s.split("_");
-            
-            res.add(new ArticleDef(tstmp[0], tstmp[1], tstmp[2], tstmp[3], tstmp[4], tstmp[5], tstmp[6], tstmp[7], tstmp[8]));
+        String s1,s2,s3,s4,s5,s6,s7,s8,s9;
+       
+        for(entity.Articles art : arts){
+            s1 = art.getId().toString();
+            s2 = art.getIdSellUsers().getId().toString();
+            if(art.getIdBuyUsers()!=null)s3 = art.getIdBuyUsers().getId().toString();
+            else s3 = "null";
+            s4 = art.getNom();
+            s5 = art.getDescription();
+            s6 = art.getPrixInit().toString();
+            s7 = art.getDateFin().toString();
+            if(art.getPrixMax()!=null)s8 = art.getPrixMax().toString();
+            else s8 = art.getPrixInit().toString();
+            s9 = art.getVisible().toString();
+            res.add(new ArticleDef(s1,s2,s3,s4,s5,s6,s7,s8,s9));
         }
         return res;
     }
     public List<String> getCat(){
-        return article.getAllCategory();
+        return null;
     }
     public List<String> getSsCat(){
-        return article.getAllSsCategory();
+        return null;
     }
     
     public String viewNameUserById(String id){
-        return article.viewNameUserById(id);
+        return null;
     }
     
 }
