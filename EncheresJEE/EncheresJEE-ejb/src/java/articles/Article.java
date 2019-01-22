@@ -17,10 +17,10 @@ import users.Utilisateur;
 @Local
 public interface Article { 
     //attention a bien generer un id unique
-    public boolean addArticle(Utilisateur user, String name, String desc, int initPrice, List<String> category, Date endDate);
+    public boolean addArticle(Utilisateur user, String name, String desc, int initPrice, String category, Date endDate);
     
     //Possible uniquement si la date endDate est passée, CAD article n'est plus en vente.
-    public boolean modifyArticle(Utilisateur user, String name, String desc, int initPrice, List<String> category, Date endDate);
+    public boolean modifyArticle(Utilisateur user, String name, String desc, int initPrice, String category, Date endDate);
     
     public boolean deleteArticle(Utilisateur user);
     

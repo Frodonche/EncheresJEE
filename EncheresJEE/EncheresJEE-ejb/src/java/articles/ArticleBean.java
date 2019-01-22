@@ -43,13 +43,12 @@ public class ArticleBean implements Article{
     }
     
     @Override
-    public boolean addArticle(Utilisateur user, String name, String desc, int initPrice, List<String> category, Date endDate) {
+    public boolean addArticle(Utilisateur user, String name, String desc, int initPrice, String category, Date endDate) {
         try {
-            String query = " insert into articles(ID_SELL_USERS,NOM,DESCRIPTION,PRIX_INIT,PRIX_MAX,DATE_FIN,VISIBLE,ID_BUY_USERS) values (?,?,?,?,?,?,?,?)";
-            PreparedStatement ps = BDDConnection.getInstance().initialisationRequetePreparee(con, query, user.getId(), name, desc, initPrice, initPrice, endDate, true , null);
+            String query = " insert into articles(ID_SELL_USERS,NOM,DESCRIPTION,PRIX_INIT,PRIX_MAX,DATE_FIN,VISIBLE,ID_BUY_USERS,NOM_CATEGORIE) values (?,?,?,?,?,?,?,?,?)";
+            PreparedStatement ps = BDDConnection.getInstance().initialisationRequetePreparee(con, query, user.getId(), name, desc, initPrice, initPrice, endDate, true , null, category);
             ResultSet rs = ps.executeQuery();
-            rs.close();
-            
+            rs.close();   
         } catch (SQLException ex) {
             return false;
         }
@@ -57,7 +56,7 @@ public class ArticleBean implements Article{
     }
 
     @Override
-    public boolean modifyArticle(Utilisateur user, String name, String desc, int initPrice, List<String> category, Date endDate) {
+    public boolean modifyArticle(Utilisateur user, String name, String desc, int initPrice, String category, Date endDate) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
