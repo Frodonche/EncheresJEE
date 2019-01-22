@@ -51,7 +51,7 @@ public class ArticleBean implements Article{
             rs.close();
             
         } catch (SQLException ex) {
-
+            return false;
         }
         return true;
     }

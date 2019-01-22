@@ -1,4 +1,4 @@
-Create database :
+﻿Create database :
 - name : encheres
 - user : root
 - pass : pass
@@ -48,7 +48,12 @@ create table paniers(
     adresse_livraison VARCHAR(100),
     PRIMARY KEY (id)
 );
-
+-- Catégories :
+create table categories(
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    nom VARCHAR(30) UNIQUE,
+    PRIMARY KEY (id)
+);
 -- Articles :
 create table articles(
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
@@ -60,6 +65,7 @@ create table articles(
     date_fin date,
     prix_max INT,
     visible boolean,
+    nom_categorie VARCHAR(30) NOT NULL references categories(nom),
     PRIMARY KEY (id)
 );
 
@@ -70,33 +76,6 @@ create table paniers_articles(
     PRIMARY KEY (idpaniers, idarticles)
 );
 
--- Catégories :
-create table categories(
-    id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-    nom VARCHAR(30),
-    PRIMARY KEY (id)
-);
-
--- Sous-Catégories :
-create table souscategories(
-    id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-    nom VARCHAR(30),
-    PRIMARY KEY (id)
-);
-
--- Relation Catégories et Sous-Catégories :
-create table categories_souscategories(
-    idcat INT references categories(id),
-    idsscat INT references souscategories(id),
-    PRIMARY KEY (idcat, idsscat)
-);
-
--- Relation Articles et Catégories : (Ici la catégorie sera la sous-catégorie, j'me suis un peu trompée :)))
-create table articles_sscategories(
-    idarticles INT references articles(id),
-    idcategories INT references souscategories(id),
-    PRIMARY KEY (idarticles, idcategories)
-);
 
 -- PEUPLEMENT DES TABLES --
 
@@ -124,43 +103,20 @@ INSERT INTO users (login, pass, nom, prenom, adresse, id_bancaire, connecte, nb_
 
 -- No value, to generate by the application (?)
 
--- Articles :
-INSERT INTO articles (id_sell_users, id_buy_users, nom, description, prix_init, date_fin, prix_max, visible)
- VALUES
- (1, null, 'Vase de Birmanie', 'Vase de bourge pleins de dorures toussa', 10, '2019-03-01', null, true),
- (1, null, 'Table de Birmanie', 'Une table chère', 20, '2019-03-01', null, true),
- (2, null, 'Cadre de Birmanie', 'Véritable photo couleur de Marie-Antoinette fournie', 50, '2019-03-01', null, true);
- 
+
 -- Catégories :
 INSERT INTO categories (nom)
  VALUES
  ('Meubles'),
  ('Vêtements');
  
--- Sous-Catégories :
-INSERT INTO souscategories (nom)
+
+-- Articles :
+INSERT INTO articles (id_sell_users, id_buy_users, nom, description, prix_init, date_fin, prix_max, visible, nom_categorie)
  VALUES
- ('Tables'),
- ('Cadres'),
- ('Vases'),
- ('Hommes'),
- ('Femmes');
- 
--- Relation Catégories et Sous-Catégories :
-INSERT INTO categories_souscategories (idcat, idsscat)
- VALUES
- (1, 1),
- (1, 2),
- (1, 3),
- (2, 4),
- (2, 5);
- 
--- Relation Articles et Catégories : (Ici la catégorie sera la sous-catégorie, j'me suis un peu trompée :)))
-INSERT INTO articles_sscategories (idarticles, idcategories)
- VALUES
- (1, 3),
- (2, 1),
- (3, 2);
+ (1, null, 'Vase de Birmanie', 'Vase de bourge pleins de dorures toussa', 10, '2019-03-01', null, true, 'Meubles'),
+ (1, null, 'Table de Birmanie', 'Une table chère', 20, '2019-03-01', null, true, 'Meubles'),
+ (2, null, 'Cadre de Birmanie', 'Véritable photo couleur de Marie-Antoinette fournie', 50, '2019-03-01', null, true, 'Meubles');
  
  
  
