@@ -5,93 +5,62 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>EncheresJEE</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"/>
-
+        <ui:define name="header">
+            <title>EncheresJEE</title>
+        </ui:define>
     </h:head>
     <h:body>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    
 
-        <!-- Debut barre de menu -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Menu</a>        
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> 
-              <div class="nav navbar-nav">
-                <c:if test="${empty sessionScope.username}"> <!-- Si un user est deconnecte -->
-                    <ui:repeat var="menuitem" value="#{menubar.getNavBarDeconnecte()}">
-                          <li class="nav-item"><h:link class="nav-link" value="#{menuitem.label}" outcome="#{menuitem.outcome}"/></li>
-                    </ui:repeat>  
-                </c:if> 
-                <c:if test="${!empty sessionScope.username}"> <!-- Si un user est connecte -->
-                    <ui:repeat var="menuitem" value="#{menubar.getNavBarConnecte()}">
-                        <li class="nav-item"><h:link class="nav-link" value="#{menuitem.label}" outcome="#{menuitem.outcome}"/></li>
-                    </ui:repeat>  
-                        <li class="nav-item nav-link dropdown">
-                            <div class="dropdown-toggle" data-toggle="dropdown">#{sessionScope.username}                                
-                                <span class="caret"></span></div>
+    <ui:composition template="layout.xhtml"> 
+        <ui:define name="content">
+                
+        
+            <div class="container">      
+            <h:form class="form-horizontal">
+             <h2 class="form-signin-heading">Déposer un article</h2>
+                <fieldset>
 
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><h:link class="nav-link" value="Mes enchères" outcome="encheres.xhtml"/></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><h:link class="nav-link" value="Deconnexion" outcome="#{connection.deconnecter()}"/></li>
-                </c:if>        
-              </div>
-            </div>
-         </nav>
-        <!-- Fin barre de menu -->
-        
-        <br/>
-        <br/>
-        
-        <div class="container">      
-        <h:form class="form-horizontal">
-         <h2 class="form-signin-heading">Déposer un article</h2>
-            <fieldset>
-           
-            <div class="form-group">
-                <label for="nom">Nom :</label>
-                <h:inputText class="form-control" value="#{depos.nom}" id="nom">
-                </h:inputText>
-            </div>
-            
-            <div class="form-group">
-                 <label for="description">Description :</label>  
-                <h:inputText class="form-control" value="#{depos.description}" id="description" >
-                </h:inputText>
-            </div>  
-                
-            <div class="form-group">
-                 <label for="prixInit">Prix initial :</label>  
-                <h:inputText class="form-control" value="#{depos.prixInit}" id="prixInit" >
-                </h:inputText>
-            </div>  
-                
-            <div class="form-group">
-                <label for="dateFin">Date de fin d'enchère :</label>  
-                <h:inputText class="form-control" value="#{depos.dateFin}" id="dateFin" >
-                </h:inputText>
-            </div> 
-                
-            <div class="form-group">
-                <label for="categorie">Catégorie : TODO</label>  
-                <select name="categorie" class="form-control" value="#{depos.categorie}" id="categorie" >
-                    <option value="null" selected="selected"></option>
-                    <option value="vase">Vase</option>
-                    <option value="table">Table</option>
-                    <option value="cadre">Cadre</option>
-                </select>
-            </div> 
-                
-             <h:commandButton class="btn btn-primary" value="Valider" action="validationDepos"/>
-             <br/>
+                <div class="form-group">
+                    <label for="nom">Nom :</label>
+                    <h:inputText class="form-control" value="#{depos.nom}" id="nom">
+                    </h:inputText>
+                </div>
 
-         </fieldset>
-        </h:form>
-       </div>
-        
+                <div class="form-group">
+                     <label for="description">Description :</label>  
+                    <h:inputText class="form-control" value="#{depos.description}" id="description" >
+                    </h:inputText>
+                </div>  
+
+                <div class="form-group">
+                     <label for="prixInit">Prix initial :</label>  
+                    <h:inputText class="form-control" value="#{depos.prixInit}" id="prixInit" >
+                    </h:inputText>
+                </div>  
+
+                <div class="form-group">
+                    <label for="dateFin">Date de fin d'enchère :</label>  
+                    <h:inputText class="form-control" value="#{depos.dateFin}" id="dateFin" >
+                    </h:inputText>
+                </div> 
+
+                <div class="form-group">
+                    <label for="categorie">Catégorie : TODO</label>  
+                    <select name="categorie" class="form-control" value="#{depos.categorie}" id="categorie" >
+                        <option value="null" selected="selected"></option>
+                        <option value="vase">Vase</option>
+                        <option value="table">Table</option>
+                        <option value="cadre">Cadre</option>
+                    </select>
+                </div> 
+
+                 <h:commandButton class="btn btn-primary" value="Valider" action="validationDepos"/>
+                 <br/>
+
+             </fieldset>
+            </h:form>
+           </div>
+        </ui:define>
+    </ui:composition>
     </h:body>
 </html>
