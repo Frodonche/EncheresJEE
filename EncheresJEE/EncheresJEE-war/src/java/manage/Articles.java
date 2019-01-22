@@ -28,7 +28,12 @@ public class Articles {
     public Articles() {        
     }
     public List<String> viewAll(){
-        return article.viewAll();
+        List<String> res = article.viewAll();
+        List<String> tmp = article.viewAll();
+        for(String s : tmp){
+            System.out.println(s);
+        }
+        return res;
     }
     public List<String> getCat(){
         return article.getAllCategory();
