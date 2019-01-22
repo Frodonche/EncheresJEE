@@ -41,19 +41,23 @@
            
             <div class="form-group">
                 <label for="login">Login :</label>
-                <h:inputText class="form-control" value="#{connection.login}" id="login">
+                <h:inputText class="form-control" value="#{connection.login}" id="login"
+                             required="true" requiredMessage="Votre login :)">
                 </h:inputText>
+                <span><h:message for="login" style="color:red"/></span>
             </div>
             
             <div class="form-group">
                 <label for="psw">Mot de passe :</label>  
-                <h:inputText class="form-control" value="#{connection.pass}" id="psw" >
-                </h:inputText>
+                <h:inputSecret class="form-control" value="#{connection.pass}" id="psw"
+                             required="true" requiredMessage="Votre mot de passe :)">
+                </h:inputSecret>
+                <span><h:message for="psw" style="color:red"/></span>
             </div>    
                 
              <h:commandButton class="btn btn-primary" value="Se connecter" action="#{connection.connecter()}"/>
              <br/>
-             <h:outputText value="#{connection.messageFailure()}"/>
+             <h:outputText value="#{connection.messageFailure()}" style="color:red"/>
          </fieldset>
         </h:form>
        </div>

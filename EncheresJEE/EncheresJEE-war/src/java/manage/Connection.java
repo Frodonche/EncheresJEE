@@ -35,8 +35,8 @@ public class Connection {
      * Creates a new instance of Hello
      */
     public Connection() {
-        login = "login";
-        pass = "mot de passe";
+        login = "";
+        pass = "";
         failure = false;
     }
 
