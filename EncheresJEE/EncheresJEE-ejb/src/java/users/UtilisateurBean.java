@@ -87,6 +87,9 @@ public class UtilisateurBean implements Utilisateur{
         // return true si l'utilisateur est bien dans la bdd avec bon mdp
         // false sinon
         
+        this.login = login;
+        this.pass = pass;
+        
         String requeteSQL = "SELECT login, pass FROM users WHERE login = ? and pass = ?";
         Object[] objets = {login, pass};
         try {
