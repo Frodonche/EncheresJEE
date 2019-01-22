@@ -31,6 +31,7 @@ public class UtilisateurBean implements Utilisateur{
     String id_bancaire;
     boolean connecte;
     int nb_abandon;
+    int id;
 
     public UtilisateurBean(){}
     
@@ -57,6 +58,20 @@ public class UtilisateurBean implements Utilisateur{
             BDDConnection bdd = BDDConnection.getInstance();
             PreparedStatement ps = bdd.initialisationRequetePreparee( bdd.getConnection() , requeteSQL , objets);
             ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(BDDConnection.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UtilisateurBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        requeteSQL = "SELECT login, pass FROM users WHERE login = ? and pass = ?";
+        try {
+            BDDConnection bdd = BDDConnection.getInstance();
+            PreparedStatement ps = bdd.initialisationRequetePreparee( bdd.getConnection() , requeteSQL , login, pass);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(BDDConnection.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -155,6 +170,10 @@ public class UtilisateurBean implements Utilisateur{
 
     public void setNb_abandon(int nb_abandon) {
         this.nb_abandon = nb_abandon;
+    }
+    
+    public int getId(){
+        return this.id;
     }
 
 }

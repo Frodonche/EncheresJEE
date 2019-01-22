@@ -56,4 +56,6 @@ public interface Utilisateur {
     public int getNb_abandon();
 
     public void setNb_abandon(int nb_abandon);
+    
+    public int getId();
 }
