@@ -17,6 +17,7 @@ public class ArticleDef {
     private String nom;
     private String description;
     private String prix_init;
+    private String date_fin;
     private String prix_max;
     private String visible;
     
@@ -27,8 +28,13 @@ public class ArticleDef {
         this.nom = s4;
         this.description = s5;
         this.prix_init = s6;
-        this.prix_max = s7;
-        this.visible = s8;
+        this.date_fin = s7;
+        if(s8 == null){
+            this.prix_max = this.prix_init;
+        }else{
+            this.prix_max = s8;
+        }
+        this.visible = s9;
     }
     
     public String getId(){
@@ -53,6 +59,10 @@ public class ArticleDef {
     
     public String getPrix_init(){
         return this.prix_init;
+    }
+    
+    public String getDate_fin(){
+        return this.date_fin;
     }
     
     public String getPrix_max(){

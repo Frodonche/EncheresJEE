@@ -46,4 +46,9 @@ public class Articles {
         return article.getAllSsCategory();
     }
     
+    public String viewNameUserById(String id){
+        System.out.println("BBBB");
+        return article.viewNameUserById(id);
+    }
+    
 }

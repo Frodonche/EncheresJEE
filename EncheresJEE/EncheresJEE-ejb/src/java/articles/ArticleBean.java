@@ -80,6 +80,25 @@ public class ArticleBean implements Article{
     public String viewArticleByName(String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    @Override
+    public String viewNameUserById(String id) {
+        String name = "TAMER";
+        try {
+            String query = " Select nom from users where id=?";
+            PreparedStatement ps = BDDConnection.getInstance().initialisationRequetePreparee(con, query, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next() != false){
+                name = rs.getString(1);
+                System.out.println("AAAA " + name);
+            }
+            rs.close();
+            
+        } catch (SQLException ex) {
+
+        }
+        return name;
+    }
 
     @Override
     public List<String> getAllCategory() {
@@ -99,7 +118,6 @@ public class ArticleBean implements Article{
     @Override
     public List<String> viewAll() {
         List<String> ret = new ArrayList<>(); ;
-        //ret.add("nom : article1 , description : ceci est l'article 1 , prix_depart : 50 , date_fin : 12/12/19 , prix_actuel : 65 ,visible : 1 , id : 123");
         try {
             String query = " Select * from articles where visible=?";
             PreparedStatement ps = BDDConnection.getInstance().initialisationRequetePreparee(con, query, "true");
@@ -114,5 +132,4 @@ public class ArticleBean implements Article{
         }
         return ret;
     }
-
 }

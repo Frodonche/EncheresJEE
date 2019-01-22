@@ -32,6 +32,8 @@ public interface Article {
     
     public String viewArticleByName(String name);
     
+    public String viewNameUserById(String id);
+    
     public List<String> getAllCategory();
    
     public List<String> getAllSsCategory();

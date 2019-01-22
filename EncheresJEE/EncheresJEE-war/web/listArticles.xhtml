@@ -19,10 +19,11 @@
         <br/>
         
         <ui:repeat var="art" value="#{articles.viewAll()}">
-            #{art.nom} <br/> 
-            #{art.description} <br/> 
-            #{art.prix_init} <br/> 
-            #{art.prix_max} <br/> 
+            Nom  : #{art.nom} <br/> 
+            Description : #{art.description} <br/> 
+            Prix de départ : #{art.prix_init} <br/> 
+            Prix actuel : #{art.prix_max} <br/> 
+            Possésseur : #{article.viewNameUserById(1)} <br/> 
             <br/>
         </ui:repeat>
         
