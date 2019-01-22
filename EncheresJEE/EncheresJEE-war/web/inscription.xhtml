@@ -54,40 +54,53 @@
            
             <div class="form-group">
                 <label for="login">Login :</label>
-                <h:inputText class="form-control" value="#{inscription.login}" id="login">
+                <h:inputText class="form-control" value="#{inscription.login}" id="login"
+                             required="true" requiredMessage="Login obligatoire">
                 </h:inputText>
-            </div>
+                <span><h:message for="login" style="color:red"/></span>
+            </div>     
             
             <div class="form-group">
                  <label for="psw">Mot de passe :</label>  
-                <h:inputText class="form-control" value="#{inscription.pass}" id="psw" >
-                </h:inputText>
-            </div>  
+                <h:inputSecret class="form-control" value="#{inscription.pass}" id="psw"
+                               required="true" requiredMessage="Mot de passe obligatoire">
+                </h:inputSecret>
+                 <span><h:message for="psw" style="color:red"/></span>
+            </div>        
                 
             <div class="form-group">
                  <label for="nom">Nom :</label>  
-                <h:inputText class="form-control" value="#{inscription.nom}" id="nom" >
+                <h:inputText class="form-control" value="#{inscription.nom}" id="nom"
+                             required="true" requiredMessage="Nom obligatoire">
                 </h:inputText>
-            </div>  
+                 <span><h:message for="nom" style="color:red"/></span>
+            </div>
+            
                 
             <div class="form-group">
                 <label for="prenom">Prenom :</label>  
-                <h:inputText class="form-control" value="#{inscription.prenom}" id="prenom" >
+                <h:inputText class="form-control" value="#{inscription.prenom}" id="prenom"
+                             required="true" requiredMessage="Prénom obligatoire">
                 </h:inputText>
-            </div>  
+                <span><h:message for="prenom" style="color:red"/></span>
+            </div>         
             
             <div class="form-group">
                 <label for="adresse">Adresse :</label>  
-                <h:inputText class="form-control" value="#{inscription.adresse}" id="adresse" >
+                <h:inputText class="form-control" value="#{inscription.adresse}" id="adresse"
+                             required="true" requiredMessage="Adresse obligatoire">
                 </h:inputText>
-            </div>  
+                <span><h:message for="adresse" style="color:red"/></span>
+            </div>       
             
             <div class="form-group">
                 <label for="idbancaire">ID Bancaire :</label>  
-                <h:inputText class="form-control" value="#{inscription.id_bancaire}" id="idbancaire" >
+                <h:inputText class="form-control" value="#{inscription.id_bancaire}" id="idbancaire"
+                             required="true" requiredMessage="ID bancaire obligatoire">
                 </h:inputText>
-            </div>  
-                
+                <span><h:message for="idbancaire" style="color:red"/></span>
+            </div>
+             
              <h:commandButton class="btn btn-primary" value="Valider" action="validationInscription"/>
              <br/>
 

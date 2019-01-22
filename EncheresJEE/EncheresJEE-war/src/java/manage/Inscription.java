@@ -35,12 +35,12 @@ public class Inscription {
      * Creates a new instance of Hello
      */
     public Inscription() {
-        login = "default";
-        pass = "default";
-        nom = "default";
-        prenom = "default";
-        adresse = "default";
-        id_bancaire = "default";
+        login = "";
+        pass = "";
+        nom = "";
+        prenom = "";
+        adresse = "";
+        id_bancaire = "";
         connecte = false;
         nb_abandon = 0;
     }

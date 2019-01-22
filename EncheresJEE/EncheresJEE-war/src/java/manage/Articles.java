@@ -14,7 +14,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author cirstea
+ * @author laura
  */
 @Named(value = "articles")
 @RequestScoped
@@ -23,8 +23,10 @@ public class Articles {
     @Inject 
     ArticleBean article;
 
-    public Articles() {        
+    public Articles() {     
+        
     }
+    
     public List<ArticleDef> viewAll(){
         List<ArticleDef> res = new ArrayList();
         List<String> tmp = article.viewAll();
@@ -45,7 +47,6 @@ public class Articles {
     }
     
     public String viewNameUserById(String id){
-        System.out.println("BBBB");
         return article.viewNameUserById(id);
     }
     
