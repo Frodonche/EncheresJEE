@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>EncheresJEE - Validation inscription</title>
+    </h:head>
+    
+    
+    
+    <h:body>
+        Menu : <a href="./">Accueil</a>
+       
+       <br/>
+       <br/>
+       <h:form>
+        <fieldset>
+            <legend>Connection</legend>
+            Login : 
+            <h:inputText value="#{connection.login}">
+            </h:inputText>
+            <br/>
+            Mot de passe : 
+            <h:inputText value="#{connection.pass}">
+            </h:inputText>
+            <br/>
+            <h:commandButton value="Se connecter" action="#{connection.connecter()}"/>
+            <br/>
+            <h:outputText value="#{connection.messageFailure()}"/>
+        </fieldset>
+       </h:form>
+       
+        
+    </h:body>
+</html>
+
