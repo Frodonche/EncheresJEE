@@ -82,7 +82,7 @@ public class Connection {
             failure = false;
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", login);
-            redirectionPage = "index"; // mettre un accueil.xhtml a terme
+            redirectionPage = "index?faces-redirect=true"; // mettre un accueil.xhtml a terme
         } else {
             failure = true;
             redirectionPage = "login";
