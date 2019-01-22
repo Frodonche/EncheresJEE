@@ -23,14 +23,16 @@
               <ul class="nav navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a></li>
                 <c:if test="${empty sessionScope.username}">
-                    <li class="nav-item"><a class="nav-link" href="./inscription.xhtml">Inscription</a></li>
+                    <li class="nav-item"><h:link class="nav-link" value="Inscription" outcome="inscription.xhtml"/></li>
                 </c:if>
+
                 <c:if test="${!empty sessionScope.username}">
-                    <li class="nav-item"><a class="nav-link" href="./deposerArticle.xhtml">Déposer un article</a></li>
+                    <li class="nav-item"><h:link class="nav-link" value="Déposer un article" outcome="deposerArticle.xhtml"/></li>
                 </c:if>
-                <li class="nav-item"><a class="nav-link active" href="./listArticles.xhtml">Voir les articles</a></li>
+                <li class="nav-item"><h:link class="nav-link" value="Voir les articles" outcome="listArticles.xhtml"/></li>
+
                 <c:if test="${empty sessionScope.username}">
-                    <li class="nav-item"><a class="nav-link" href="./login.xhtml">Connexion</a></li>
+                    <li class="nav-item"><h:link class="nav-link" value="Connexion" outcome="login.xhtml"/></li>
                 </c:if>
                 <c:if test="${!empty sessionScope.username}">
                     <li class="nav-item nav-link dropdown">
@@ -40,6 +42,9 @@
                             <li><a class="nav-item nav-link" href="#">Mes enchères</a></li>
                         </ul>
                     </li>
+                </c:if>
+                <c:if test="${!empty sessionScope.username}">
+                    <li class="nav-item"><h:link class="nav-link" value="Déconnexion" outcome="#{connection.deconnecter()}"/></li>                   
                 </c:if>
               </ul>
             </div>
