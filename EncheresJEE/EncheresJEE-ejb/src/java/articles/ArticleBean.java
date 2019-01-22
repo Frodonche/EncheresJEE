@@ -77,20 +77,32 @@ public class ArticleBean implements Article{
     }
 
     @Override
-    public String viewArticleByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<String> viewArticlesUserById(String id) {
+        List<String> ret = new ArrayList<>(); ;
+        try {
+            String query = " Select * from articles where id_sell_users=?";
+            PreparedStatement ps = BDDConnection.getInstance().initialisationRequetePreparee(con, query, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next() != false){
+                ret.add(rs.getString(1) + "_" + rs.getString(2) + "_" + rs.getString(3) + "_" + rs.getString(4) + "_" + rs.getString(5) + "_" + rs.getString(6) + "_" + rs.getString(7) + "_" + rs.getString(8) + "_" + rs.getString(9));
+            }
+            rs.close();
+            
+        } catch (SQLException ex) {
+
+        }
+        return ret;
     }
     
     @Override
     public String viewNameUserById(String id) {
-        String name = "TAMER";
+        String name = "";
         try {
             String query = " Select nom from users where id=?";
             PreparedStatement ps = BDDConnection.getInstance().initialisationRequetePreparee(con, query, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next() != false){
                 name = rs.getString(1);
-                System.out.println("AAAA " + name);
             }
             rs.close();
             
