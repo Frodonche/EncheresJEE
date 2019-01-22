@@ -29,6 +29,7 @@ public class DeposerArticle {
     private String dateFin;
     private String prixMax;
     private String visible;
+    private String categorie;
     
     public DeposerArticle(){
         this.idSellUsers = "null";
@@ -39,6 +40,7 @@ public class DeposerArticle {
         this.dateFin = "01-01-2042";
         this.prixMax = "null";
         this.visible = "true";
+        this.categorie = "null";
     }
     
     public String getIdSellUsers(){
@@ -73,6 +75,10 @@ public class DeposerArticle {
         return this.visible;
     }
     
+    public String getCategorie(){
+        return this.categorie;
+    }
+    
     public void setIdSellUsers(String id){
         this.idSellUsers = id;
     }
@@ -103,6 +109,10 @@ public class DeposerArticle {
     
     public void setVisible(String v){
         this.visible = v;
+    }
+    
+    public void setCategorie(String cat){
+        this.categorie = cat;
     }
     
     public String validationDepos(){
