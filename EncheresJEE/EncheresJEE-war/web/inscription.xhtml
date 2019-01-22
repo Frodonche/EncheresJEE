@@ -4,49 +4,81 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>EncheresJEE - Inscription</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"/>
+
     </h:head>
     
-    
-    
     <h:body>
-        Menu : <a href="./">Accueil</a>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  
+         <!-- Debut barre de menu -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Menu</a>        
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link" href="./">Accueil <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="#">Inscription</a>
+                <a class="nav-item nav-link" href="./DeposerArticle">Déposer un article</a>
+                <a class="nav-item nav-link" href="./listArticles.xhtml">Voir les articles</a>
+                <a class="nav-item nav-link" href="./login.xhtml">Connexion</a>
+              </div>
+            </div>
+         </nav>
+        <!-- Fin barre de menu -->
+        
         <br/>
         <br/>
         
-        <h:form>
-
+        <div class="container">      
+        <h:form class="form-horizontal">
+         <h2 class="form-signin-heading">Inscription</h2>
             <fieldset>
-                <legend>Inscription </legend>
-                Login : 
-                <h:inputText value="#{inscription.login}">
+           
+            <div class="form-group">
+                <label for="login">Login :</label>
+                <h:inputText class="form-control" value="#{inscription.login}" id="login">
                 </h:inputText>
-                <br/>
-                Mot de passe : 
-                <h:inputText value="#{inscription.pass}">
+            </div>
+            
+            <div class="form-group">
+                 <label for="psw">Mot de passe :</label>  
+                <h:inputText class="form-control" value="#{inscription.pass}" id="psw" >
                 </h:inputText>
-                <br/>
-                Nom : 
-                <h:inputText value="#{inscription.nom}">
-                </h:inputText>
-                <br/>
-                Prenom : 
-                <h:inputText value="#{inscription.prenom}">
-                </h:inputText>
-                <br/>
-                Adresse : 
-                <h:inputText value="#{inscription.adresse}">
-                </h:inputText>
-                <br/>
-                ID Bancaire : 
-                <h:inputText value="#{inscription.id_bancaire}">
-                </h:inputText>   
-                <br/>
+            </div>  
                 
-                <h:commandButton value="Valider" action="validationInscription"/>
-                <br/>
+            <div class="form-group">
+                 <label for="nom">Nom :</label>  
+                <h:inputText class="form-control" value="#{inscription.nom}" id="nom" >
+                </h:inputText>
+            </div>  
+                
+            <div class="form-group">
+                <label for="prenom">Prenom :</label>  
+                <h:inputText class="form-control" value="#{inscription.prenom}" id="prenom" >
+                </h:inputText>
+            </div>  
+            
+            <div class="form-group">
+                <label for="adresse">Adresse :</label>  
+                <h:inputText class="form-control" value="#{inscription.adresse}" id="adresse" >
+                </h:inputText>
+            </div>  
+            
+            <div class="form-group">
+                <label for="idbancaire">ID Bancaire :</label>  
+                <h:inputText class="form-control" value="#{inscription.id_bancaire}" id="idbancaire" >
+                </h:inputText>
+            </div>  
+                
+             <h:commandButton class="btn btn-primary" value="Valider" action="validationInscription"/>
+             <br/>
 
-            </fieldset>
+         </fieldset>
         </h:form>
+       </div>
+
         
         
     </h:body>
