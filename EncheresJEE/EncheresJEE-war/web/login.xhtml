@@ -4,6 +4,14 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>EncheresJEE - Validation inscription</title>
+        
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+       
+        <!-- Custom styles for this template -->
+        <link href="bootstrap/css/signin.css" rel="stylesheet"/>
+        
     </h:head>
     
     
@@ -13,23 +21,25 @@
        
        <br/>
        <br/>
-       <h:form>
-        <fieldset>
-            <legend>Connection</legend>
-            Login : 
-            <h:inputText value="#{connection.login}">
-            </h:inputText>
-            <br/>
-            Mot de passe : 
-            <h:inputText value="#{connection.pass}">
-            </h:inputText>
-            <br/>
-            <h:commandButton value="Se connecter" action="#{connection.connecter()}"/>
-            <br/>
-            <h:outputText value="#{connection.messageFailure()}"/>
-        </fieldset>
-       </h:form>
        
+       <div class="container">
+        <h:form class="form-signin">
+         <h2 class="form-signin-heading">Connexion</h2>
+            <fieldset>
+           
+             <h:inputText class="form-control" value="#{connection.login}">
+             </h:inputText>
+             
+            
+             <h:inputText class="form-control" value="#{connection.pass}">
+             </h:inputText>
+             <br/>
+             <h:commandButton class="btn btn-lg btn-primary btn-block" value="Se connecter" action="#{connection.connecter()}"/>
+             <br/>
+             <h:outputText value="#{connection.messageFailure()}"/>
+         </fieldset>
+        </h:form>
+       </div>
         
     </h:body>
 </html>
