@@ -40,11 +40,6 @@ public class ArticleBean implements Article{
     }
     
     @Override
-    public String sayBest(String name) { // TODO : retourner l'utilisateur choisi dans la BDD
-        return "I am the night !";
-    }
-
-    @Override
     public boolean addArticle(Utilisateur user, String name, String desc, int initPrice, List<String> category, Date endDate) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

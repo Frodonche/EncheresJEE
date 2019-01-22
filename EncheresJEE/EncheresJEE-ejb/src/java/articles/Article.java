@@ -16,9 +16,6 @@ import users.Utilisateur;
  */
 @Local
 public interface Article { 
-    
-    public String sayBest(String name); // TODO : retourner l'utilisateur choisi dans la BDD
-    
     //attention a bien generer un id unique
     public boolean addArticle(Utilisateur user, String name, String desc, int initPrice, List<String> category, Date endDate);
     
