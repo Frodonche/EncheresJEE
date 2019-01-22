@@ -31,7 +31,7 @@
                     <a class="nav-item nav-link" href="./login.xhtml">Connexion</a>
                 </c:if>
                 <c:if test="${!empty sessionScope.username}">
-                    Salut #{sessionScope.username} !
+                    <a class="nav-item nav-link" href="">Salut #{sessionScope.username} !</a>                   
                 </c:if>
               </div>
             </div>
