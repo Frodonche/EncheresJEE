@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>EncheresJEE - Inscription</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"/>
@@ -13,15 +15,30 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   
-         <!-- Debut barre de menu -->
+        <!-- Debut barre de menu -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Menu</a>        
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-item nav-link" href="./">Accueil <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link active" href="#">Inscription</a>
-                <a class="nav-item nav-link" href="./listArticles.xhtml">Voir les articles</a>
-                <a class="nav-item nav-link" href="./login.xhtml">Connexion</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> 
+              <div class="nav navbar-nav">
+                <c:if test="${empty sessionScope.username}"> <!-- Si un user est deconnecte -->
+                    <ui:repeat var="menuitem" value="#{menubar.getNavBarDeconnecte()}">
+                          <li class="nav-item"><h:link class="nav-link" value="#{menuitem.label}" outcome="#{menuitem.outcome}"/></li>
+                    </ui:repeat>  
+                </c:if> 
+                <c:if test="${!empty sessionScope.username}"> <!-- Si un user est connecte -->
+                    <ui:repeat var="menuitem" value="#{menubar.getNavBarConnecte()}">
+                        <li class="nav-item"><h:link class="nav-link" value="#{menuitem.label}" outcome="#{menuitem.outcome}"/></li>
+                    </ui:repeat>  
+                        <li class="nav-item nav-link dropdown">
+                            <div class="dropdown-toggle" data-toggle="dropdown">#{sessionScope.username}                                
+                                <span class="caret"></span></div>
+
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><h:link class="nav-link" value="Mes enchères" outcome="encheres.xhtml"/></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><h:link class="nav-link" value="Deconnexion" outcome="#{connection.deconnecter()}"/></li>
+                </c:if>        
               </div>
             </div>
          </nav>

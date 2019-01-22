@@ -18,29 +18,28 @@
          <!-- Debut barre de menu -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Menu</a>        
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <ul class="nav navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="./">Accueil <span class="sr-only">(current)</span></a></li>
-                <c:if test="${empty sessionScope.username}">
-                    <li class="nav-item"><a class="nav-link" href="./inscription.xhtml">Inscription</a></li>
-                </c:if>
-                <c:if test="${!empty sessionScope.username}">
-                    <li class="nav-item"><a class="nav-link" href="./deposerArticle.xhtml">Déposer un article</a></li>
-                </c:if>
-                <li class="nav-item"><a class="nav-link active" href="#">Voir les articles</a></li>
-                <c:if test="${empty sessionScope.username}">
-                    <li class="nav-item"><a class="nav-link" href="./login.xhtml">Connexion</a></li>
-                </c:if>
-                <c:if test="${!empty sessionScope.username}">
-                    <li class="nav-item nav-link dropdown">
-                        <div class="dropdown-toggle" data-toggle="dropdown">#{sessionScope.username}
-                        <span class="caret"></span></div>
-                        <ul class="dropdown-menu">
-                            <li><a class="nav-item nav-link" href="#">Mes enchères</a></li>
-                        </ul>
-                    </li>
-                </c:if>
-              </ul>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> 
+              <div class="nav navbar-nav">
+                <c:if test="${empty sessionScope.username}"> <!-- Si un user est deconnecte -->
+                    <ui:repeat var="menuitem" value="#{menubar.getNavBarDeconnecte()}">
+                          <li class="nav-item"><h:link class="nav-link" value="#{menuitem.label}" outcome="#{menuitem.outcome}"/></li>
+                    </ui:repeat>  
+                </c:if> 
+                <c:if test="${!empty sessionScope.username}"> <!-- Si un user est connecte -->
+                    <ui:repeat var="menuitem" value="#{menubar.getNavBarConnecte()}">
+                        <li class="nav-item"><h:link class="nav-link" value="#{menuitem.label}" outcome="#{menuitem.outcome}"/></li>
+                    </ui:repeat>  
+                        <li class="nav-item nav-link dropdown">
+                            <div class="dropdown-toggle" data-toggle="dropdown">#{sessionScope.username}                                
+                                <span class="caret"></span></div>
+
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><h:link class="nav-link" value="Mes enchères" outcome="encheres.xhtml"/></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><h:link class="nav-link" value="Deconnexion" outcome="#{connection.deconnecter()}"/></li>
+                </c:if>        
+              </div>
             </div>
          </nav>
         <!-- Fin barre de menu -->
