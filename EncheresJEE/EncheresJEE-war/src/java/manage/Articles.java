@@ -6,6 +6,7 @@
 package manage;
 
 import articles.Article;
+import articles.ArticleBean;
 import java.util.ArrayList;
 import java.util.List;
 import users.Utilisateur;
@@ -22,27 +23,18 @@ import javax.inject.Named;
 public class Articles {
 
     @Inject 
-    Article article;
+    ArticleBean article;
 
-    private List<String> cat, ssCat;
-    private List<String> articles;
-      
-    public Articles() {
-        articles = new ArrayList<String>();
-        cat = new ArrayList<String>();
-        ssCat = new ArrayList<String>();
-        articles = article.viewAll();
-        cat = article.getAllCategory();
-        ssCat = article.getAllSsCategory();
+    public Articles() {        
     }
     public List<String> viewAll(){
-        return articles;
+        return article.viewAll();
     }
     public List<String> getCat(){
-        return cat;
+        return article.getAllCategory();
     }
     public List<String> getSsCat(){
-        return ssCat;
+        return article.getAllSsCategory();
     }
     
 }

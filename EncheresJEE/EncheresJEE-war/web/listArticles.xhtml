@@ -18,8 +18,8 @@
         <br/>
         <br/>
         
-        <ui:repeat var="article" value="#{articles.viewAll()}">
-            <p itemValue="#{article}" itemLabel="#{article}"/>
+        <ui:repeat value="#{articles.viewAll()}" var="art" >
+            <p itemValue="#{art.toString()}" itemLabel="#{art.toString()}"/>
         </ui:repeat>
         
     </h:body>
