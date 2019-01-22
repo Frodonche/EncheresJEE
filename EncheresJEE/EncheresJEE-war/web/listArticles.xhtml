@@ -32,22 +32,25 @@
         <br/>
         <br/>
         
-        <ui:repeat var="art" value="#{articles.viewAll()}">
-           
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">#{art.nom}</h5>
-                    <p class="card-text">#{art.description}</p>
-                    <p class="card-text">Prix de départ : #{art.prix_init}</p>
-                    <p class="card-text">Prix actuel : #{art.prix_max}</p>
-                    <p class="card-text">Vendeur : #{articles.viewNameUserById(art.id_sell_users)}</p>
-                    <a href="#" class="btn btn-primary">Card link</a>
-                    <a href="#" class="btn btn-primary">Another link</a>
+        <div class="container">
+            <ui:repeat var="art" value="#{articles.viewAll()}">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">#{art.nom}</h5>
+                        <p class="card-text">#{art.description}</p>
+                        <p class="card-text">Prix de départ : #{art.prix_init}</p>
+                        <p class="card-text">Prix actuel : #{art.prix_max}</p>
+                        <p class="card-text">Vendeur : #{articles.viewNameUserById(art.id_sell_users)}</p>
+                        <a href="#" class="btn btn-primary">Card link</a>
+                        <a href="#" class="btn btn-primary">Another link</a>
+                    </div>
                 </div>
-            </div>
-               
-            <br/>
-        </ui:repeat>
+
+                <br/>
+            </ui:repeat>     
+        </div>
+        
         
     </h:body>
 </html>
