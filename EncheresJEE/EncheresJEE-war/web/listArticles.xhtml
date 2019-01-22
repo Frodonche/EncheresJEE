@@ -19,8 +19,11 @@
         <br/>
         
         <ui:repeat var="art" value="#{articles.viewAll()}">
-            #{art}
-            Salut 
+            #{art.nom} <br/> 
+            #{art.description} <br/> 
+            #{art.prix_init} <br/> 
+            #{art.prix_max} <br/> 
+            <br/>
         </ui:repeat>
         
     </h:body>

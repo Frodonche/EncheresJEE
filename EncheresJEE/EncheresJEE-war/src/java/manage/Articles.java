@@ -27,11 +27,15 @@ public class Articles {
 
     public Articles() {        
     }
-    public List<String> viewAll(){
-        List<String> res = article.viewAll();
+    public List<ArticleDef> viewAll(){
+        List<ArticleDef> res = new ArrayList();
         List<String> tmp = article.viewAll();
+        String[] tstmp;
+        String stmp;
         for(String s : tmp){
-            System.out.println(s);
+            tstmp = s.split("-");
+            
+            res.add(new ArticleDef(tstmp[0], tstmp[1], tstmp[2], tstmp[3], tstmp[4], tstmp[5], tstmp[6], tstmp[7], tstmp[8]));
         }
         return res;
     }
