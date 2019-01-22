@@ -45,12 +45,9 @@ public class ArticleBean implements Article{
     @Override
     public boolean addArticle(Utilisateur user, String name, String desc, int initPrice, List<String> category, Date endDate) {
         try {
-            String query = " insert into  * from articles where visible=?";
-            PreparedStatement ps = BDDConnection.getInstance().initialisationRequetePreparee(con, query, "true");
+            String query = " insert into articles(ID_SELL_USERS,NOM,DESCRIPTION,PRIX_INIT,PRIX_MAX,DATE_FIN,VISIBLE,ID_BUY_USERS) values (?,?,?,?,?,?,?,?)";
+            PreparedStatement ps = BDDConnection.getInstance().initialisationRequetePreparee(con, query, user.getId(), name, desc, initPrice, initPrice, endDate, true , null);
             ResultSet rs = ps.executeQuery();
-            while(rs.next() != false){
-                ret.add(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4) + " " + rs.getString(5) + " " + rs.getString(6) + " " + rs.getString(7) + " " + rs.getString(8) + " " + rs.getString(9));
-            }
             rs.close();
             
         } catch (SQLException ex) {
