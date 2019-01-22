@@ -25,6 +25,9 @@ public class Connection {
 
     private String login;
     private String pass;
+    
+    private boolean estConnecte;
+    private String userConnecte;
    
     private static String failureMessage = "Mauvaise combinaison login / mot de passe";
     private boolean failure;
@@ -78,6 +81,8 @@ public class Connection {
         // Sinon avertir que la connection a échoué
         if(success){
             failure = false;
+            utilisateur.setConnecte(true);
+            
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", login);
             redirectionPage = "index?faces-redirect=true"; // mettre un accueil.xhtml a terme
@@ -90,9 +95,19 @@ public class Connection {
     }
     
     public String deconnecter() {
+        utilisateur.setConnecte(false);
+        
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
         return "login";
     }
     
+    public boolean estConnecte(){
+        return utilisateur.isConnecte();
+    }
+    
+    public String getLoginConnecte(){
+        return utilisateur.getLogin();
+    }
+
 }
