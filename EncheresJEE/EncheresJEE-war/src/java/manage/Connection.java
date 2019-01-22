@@ -8,6 +8,7 @@ package manage;
 import users.Utilisateur;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -19,7 +20,6 @@ import utils.SessionUtils;
  */
 @Named(value = "connection")
 @RequestScoped
-@SessionScoped
 public class Connection {
 
     @Inject 
@@ -83,7 +83,6 @@ public class Connection {
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", login);
             redirectionPage = "index"; // mettre un accueil.xhtml a terme
-            System.out.println("SESSIOOOOOOOOOOOOON   " + session.getAttribute("username"));
         } else {
             failure = true;
             redirectionPage = "login";

@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>EncheresJEE</title>
         
@@ -21,10 +22,17 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="#">Accueil <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="./inscription.xhtml">Inscription</a>
+                <c:if test="${empty sessionScope.username}">
+                    <a class="nav-item nav-link" href="./inscription.xhtml">Inscription</a>
+                </c:if>
                 <a class="nav-item nav-link" href="./DeposerArticle">Déposer un article</a>
                 <a class="nav-item nav-link" href="./listArticles.xhtml">Voir les articles</a>
-                <a class="nav-item nav-link" href="./login.xhtml">Connexion</a>
+                <c:if test="${empty sessionScope.username}">
+                    <a class="nav-item nav-link" href="./login.xhtml">Connexion</a>
+                </c:if>
+                <c:if test="${!empty sessionScope.username}">
+                    Salut #{sessionScope.username} !
+                </c:if>
               </div>
             </div>
          </nav>
