@@ -24,7 +24,9 @@
                 <c:if test="${empty sessionScope.username}">
                     <li class="nav-item"><a class="nav-link" href="./inscription.xhtml">Inscription</a></li>
                 </c:if>
-                <li class="nav-item"><a class="nav-link" href="./DeposerArticle">Déposer un article</a></li>
+                <c:if test="${!empty sessionScope.username}">
+                    <li class="nav-item"><a class="nav-link" href="./deposerArticle.xhtml">Déposer un article</a></li>
+                </c:if>
                 <li class="nav-item"><a class="nav-link active" href="#">Voir les articles</a></li>
                 <c:if test="${empty sessionScope.username}">
                     <li class="nav-item"><a class="nav-link" href="./login.xhtml">Connexion</a></li>
