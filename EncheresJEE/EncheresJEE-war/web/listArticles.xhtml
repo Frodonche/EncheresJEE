@@ -33,11 +33,19 @@
         <br/>
         
         <ui:repeat var="art" value="#{articles.viewAll()}">
-            Nom  : #{art.nom} <br/> 
-            Description : #{art.description} <br/> 
-            Prix de départ : #{art.prix_init} <br/> 
-            Prix actuel : #{art.prix_max} <br/> 
-            Possesseur : #{article.viewNameUserById(1)} <br/> 
+           
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">#{art.nom}</h5>
+                    <p class="card-text">#{art.description}</p>
+                    <p class="card-text">Prix de départ : #{art.prix_init}</p>
+                    <p class="card-text">Prix actuel : #{art.prix_max}</p>
+                    <p class="card-text">Vendeur : #{articles.viewNameUserById(art.id_sell_users)}</p>
+                    <a href="#" class="btn btn-primary">Card link</a>
+                    <a href="#" class="btn btn-primary">Another link</a>
+                </div>
+            </div>
+               
             <br/>
         </ui:repeat>
         
