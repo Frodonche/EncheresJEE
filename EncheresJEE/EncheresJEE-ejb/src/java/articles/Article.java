@@ -30,7 +30,7 @@ public interface Article {
     
     public String viewArticleByCategory(String cat);
     
-    public String viewArticleByName(String name);
+    public List<String> viewArticlesUserById(String id);
     
     public String viewNameUserById(String id);
     
