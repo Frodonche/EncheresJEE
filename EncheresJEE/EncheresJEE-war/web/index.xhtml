@@ -20,20 +20,26 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Menu</a>        
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Accueil <span class="sr-only">(current)</span></a>
+              <ul class="nav navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a></li>
                 <c:if test="${empty sessionScope.username}">
-                    <a class="nav-item nav-link" href="./inscription.xhtml">Inscription</a>
+                    <li class="nav-item"><a class="nav-link" href="./inscription.xhtml">Inscription</a></li>
                 </c:if>
-                <a class="nav-item nav-link" href="./deposerArticle.xhtml">Déposer un article</a>
-                <a class="nav-item nav-link" href="./listArticles.xhtml">Voir les articles</a>
+                <li class="nav-item"><a class="nav-link" href="./DeposerArticle">Déposer un article</a></li>
+                <li class="nav-item"><a class="nav-link active" href="./listArticles.xhtml">Voir les articles</a></li>
                 <c:if test="${empty sessionScope.username}">
-                    <a class="nav-item nav-link" href="./login.xhtml">Connexion</a>
+                    <li class="nav-item"><a class="nav-link" href="./login.xhtml">Connexion</a></li>
                 </c:if>
                 <c:if test="${!empty sessionScope.username}">
-                    <a class="nav-item nav-link" href="">Salut #{sessionScope.username} !</a>                   
+                    <li class="nav-item nav-link dropdown">
+                        <div class="dropdown-toggle" data-toggle="dropdown">#{sessionScope.username}
+                        <span class="caret"></span></div>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-item nav-link" href="#">Mes enchères</a></li>
+                        </ul>
+                    </li>
                 </c:if>
-              </div>
+              </ul>
             </div>
          </nav>
         <!-- Fin barre de menu -->
