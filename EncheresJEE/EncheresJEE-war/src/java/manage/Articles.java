@@ -33,7 +33,7 @@ public class Articles {
         String[] tstmp;
         String stmp;
         for(String s : tmp){
-            tstmp = s.split("-");
+            tstmp = s.split("_");
             
             res.add(new ArticleDef(tstmp[0], tstmp[1], tstmp[2], tstmp[3], tstmp[4], tstmp[5], tstmp[6], tstmp[7], tstmp[8]));
         }
