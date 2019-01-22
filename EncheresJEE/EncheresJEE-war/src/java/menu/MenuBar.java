@@ -5,12 +5,8 @@
  */
 package menu;
 
-import manage.*;
-import articles.Article;
-import articles.ArticleBean;
-import java.util.ArrayList;
+
 import java.util.List;
-import users.Utilisateur;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;

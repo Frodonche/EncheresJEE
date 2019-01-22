@@ -5,15 +5,8 @@
  */
 package menu;
 
-import users.*;
-import bdd.BDDConnection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
@@ -26,6 +19,7 @@ import javax.ejb.Stateless;
 @LocalBean
 public class NavBarBean implements NavBar{
     
+    @Override
     public List<NavBarElement> getNavElementListDeconnecte(){
         List<NavBarElement> list = new ArrayList<NavBarElement>();
         list.add(new NavBarElement("Accueil","index.xhtml"));
@@ -35,13 +29,12 @@ public class NavBarBean implements NavBar{
         return list;
     }
     
+    @Override
     public List<NavBarElement> getNavElementListConnecte(){
         List<NavBarElement> list = new ArrayList<NavBarElement>();
         list.add(new NavBarElement("Accueil","index.xhtml"));
         list.add(new NavBarElement("Déposer un article","deposerArticle.xhtml"));
         list.add(new NavBarElement("Voir les articles","listArticles.xhtml"));
-        //list.add(new NavBarElement("#{sessionScope.username}","", new NavBarElement("Mes enchères", "encheres.xhtml")));
-        //list.add(new NavBarElement("Deconnexion","#{connection.deconnecter()}"));
         return list;
     }
     
