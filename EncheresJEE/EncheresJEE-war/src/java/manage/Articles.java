@@ -5,7 +5,6 @@
  */
 package manage;
 
-import articles.ArticleBean;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;

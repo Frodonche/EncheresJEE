@@ -5,10 +5,10 @@
  */
 package manage;
 
-import articles.ArticleBean;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import session.ArticlesFacade;
 
 /**
  *
@@ -19,7 +19,7 @@ import javax.inject.Named;
 public class DeposerArticle {
     
     @Inject 
-    ArticleBean article;
+    ArticlesFacade article;
     
     private String idSellUsers;
     private String idBuyUsers;
