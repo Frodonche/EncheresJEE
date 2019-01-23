@@ -30,7 +30,7 @@ public class Articles {
     public List<ArticleDef> viewAll(){
         List<entity.Articles> arts = article.findAll();
         List<ArticleDef> res = new ArrayList();
-        String s1,s2,s3,s4,s5,s6,s7,s8,s9;
+        String s1,s2,s3,s4,s5,s6,s7,s8,s9,s10;
        
         for(entity.Articles art : arts){
             s1 = art.getId().toString();
@@ -44,7 +44,8 @@ public class Articles {
             if(art.getPrixMax()!=null)s8 = art.getPrixMax().toString();
             else s8 = art.getPrixInit().toString();
             s9 = art.getVisible().toString();
-            res.add(new ArticleDef(s1,s2,s3,s4,s5,s6,s7,s8,s9));
+            s10 = art.getNomCategorie().getNom();
+            res.add(new ArticleDef(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10));
         }
         return res;
     }

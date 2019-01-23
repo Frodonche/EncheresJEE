@@ -20,8 +20,9 @@ public class ArticleDef {
     private String date_fin;
     private String prix_max;
     private String visible;
+    private String categorie;
     
-    public ArticleDef(String s1, String s2, String s3, String s4, String s5, String s6, String s7, String s8, String s9){
+    public ArticleDef(String s1, String s2, String s3, String s4, String s5, String s6, String s7, String s8, String s9, String s10){
         this.id = s1;
         this.id_sell_users = s2;
         this.id_buy_users = s3;
@@ -35,6 +36,7 @@ public class ArticleDef {
             this.prix_max = s8;
         }
         this.visible = s9;
+        this.categorie = s10;
     }
     
     public String getId(){
@@ -71,6 +73,10 @@ public class ArticleDef {
     
     public String getVisible(){
         return this.visible;
+    }
+    
+    public String getCategorie(){
+        return this.categorie;
     }
 }
 
