@@ -16,9 +16,13 @@
                 <br/>
                 <br/>
 
-                <h:outputText value="#{depos.validationDepos()}" />
-                <br/>
-                Votre article a bien été déposé ! <a href="./index.xhtml">Accueil</a> !
+                <div class="container">
+                    <div class="jumbotron">
+                     <h:outputText value="#{depos.validationDepos()}" />
+                     <br/>
+                     Votre article a bien été déposé ! <a href="./index.xhtml">Accueil</a> !
+                    </div>         
+                </div>
                 
             </ui:define>
         </ui:composition>
