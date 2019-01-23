@@ -6,7 +6,6 @@
 package manage;
 
 import entity.Users;
-import users.Utilisateur;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -112,9 +111,9 @@ public class Inscription {
         utilisateurActif.setNbAbandon(nb_abandon);
     }
     
-    public String inscrire() { // TODO : faire fonction qui renvoie l'utilisateur depuis la BDD
+    public String inscrire() { 
         utilisateur.create(utilisateurActif);
-        return "Utilisateur "+utilisateurActif.getLogin()+" inscrit !";  
+        return "Utilisateur " + utilisateurActif.getLogin() + " inscrit !";  
     }
     
 }
