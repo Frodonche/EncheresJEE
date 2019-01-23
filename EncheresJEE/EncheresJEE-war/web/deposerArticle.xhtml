@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <ui:define name="header">
             <title>EncheresJEE</title>
@@ -48,15 +49,14 @@
                 </div> 
 
                 <div class="form-group">
-                    <label for="categorie">Catégorie : TODO</label>  
-                    <select name="categorie" class="form-control" value="#{depos.categorie}" id="categorie" >
-                        <option value="null" selected="selected"></option>
-                        <option value="vase">Vase</option>
-                        <option value="table">Table</option>
-                        <option value="cadre">Cadre</option>
-                    </select>
+                    <label for="categorie">Catégorie :</label>  
+                    <h:form>
+                        <h:selectOneMenu id="categorie" class="form-control" value="#{depos.categorie}" style="width:200px">
+                            <f:selectItems value="#{depos.allCategories}" />
+                    </h:selectOneMenu>
+                    </h:form>
                 </div> 
-
+              
                  <h:commandButton class="btn btn-primary" value="Valider" action="validationDepos"/>
                  <br/>
 

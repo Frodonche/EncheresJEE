@@ -9,7 +9,10 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import entity.Articles;
+import entity.Categories;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import session.ArticlesFacade;
 import session.CategoriesFacade;
 import session.UsersFacade;
@@ -123,6 +126,14 @@ public class DeposerArticle {
     
     public void setCategorie(String cat){
         this.articleActif.setNomCategorie(categorie.findByName(cat));
+    }
+    
+    public List<String> getAllCategories(){
+        List<String> ret = new ArrayList();
+        for(Categories cat : categorie.findAll()){
+            ret.add(cat.getNom());
+        }
+        return ret;
     }
     
     public String validationDepos(){
