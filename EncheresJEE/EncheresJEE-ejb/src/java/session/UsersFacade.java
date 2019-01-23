@@ -44,11 +44,13 @@ public class UsersFacade extends AbstractFacade<Users> {
         }
     }
     
+    @PermitAll
     public void deconnecter(String login){
         Users find = this.findByLogin(login);
         if(find != null)find.setConnecte(false);
     }
     
+    @PermitAll
     public Users findByLogin(String login){
         List<Users> users = this.findAll();
         Users find = null;
