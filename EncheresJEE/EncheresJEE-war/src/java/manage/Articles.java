@@ -51,9 +51,6 @@ public class Articles {
     public List<String> getCat(){
         return null;
     }
-    public List<String> getSsCat(){
-        return null;
-    }
     
     public String viewNameUserById(String id){
         return null;

@@ -10,18 +10,19 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import session.UsersFacade;
 import utils.SessionUtils;
 
 /**
  *
- * @author cirstea
+ * @author gui
  */
 @Named(value = "connection")
 @RequestScoped
 public class Connection {
 
     @Inject 
-    Utilisateur utilisateur;
+    UsersFacade utilisateur;
 
     private String login;
     private String pass;
@@ -41,11 +42,11 @@ public class Connection {
         failure = false;
     }
 
-    public Utilisateur getUtilisateur() {
+    public UsersFacade getUtilisateur() {
         return utilisateur;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
+    public void setUtilisateur(UsersFacade utilisateur) {
         this.utilisateur = utilisateur;
     }
 
@@ -81,7 +82,7 @@ public class Connection {
         // Sinon avertir que la connection a échoué
         if(success){
             failure = false;
-            utilisateur.setConnecte(true);
+            //utilisateur.setConnecte(true);
             
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", login);
@@ -95,7 +96,7 @@ public class Connection {
     }
     
     public String deconnecter() {
-        utilisateur.setConnecte(false);
+        utilisateur.deconnecter(login);
         
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
@@ -103,11 +104,11 @@ public class Connection {
     }
     
     public boolean estConnecte(){
-        return utilisateur.isConnecte();
+        return utilisateur.findByLogin(login).getConnecte();
     }
     
     public String getLoginConnecte(){
-        return utilisateur.getLogin();
+        return utilisateur.findByLogin(login).getLogin();
     }
 
 }

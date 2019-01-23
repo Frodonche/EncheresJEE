@@ -6,6 +6,7 @@
 package session;
 
 import entity.Users;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,4 +30,33 @@ public class UsersFacade extends AbstractFacade<Users> {
         super(Users.class);
     }
     
+    public boolean connecter(String login, String pass){
+        Users find = null;
+        find = this.findByLogin(login);
+        if(find == null)return false;
+        if(find.getPass().equals(pass)){
+            find.setConnecte(Boolean.TRUE);
+            this.getEntityManager().persist(find);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void deconnecter(String login){
+        Users find = null;
+        find = this.findByLogin(login);
+        if(find != null)find.setConnecte(false);
+    }
+    
+    public Users findByLogin(String login){
+        List<Users> users = this.findAll();
+        Users find = null;
+        for(Users user : users){
+            if(user.getLogin().equals(login)){
+                find = user;
+            }
+        }
+        return find;
+    }
 }
