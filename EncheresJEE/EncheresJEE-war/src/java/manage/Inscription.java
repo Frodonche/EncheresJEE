@@ -23,34 +23,25 @@ public class Inscription {
     @Inject 
     UsersFacade utilisateur;
 
-    Users utilisateurActif;
-    private String login;
-    private String pass;
-    private String nom;
-    private String prenom;
-    private String adresse;
-    private String id_bancaire;
-    private boolean connecte;
-    private int nb_abandon;
-   
+    Users utilisateurActif;  
     
     /**
      * Creates a new instance of Hello
      */
     public Inscription() {
         utilisateurActif = new Users();
-        login = "";
-        pass = "";
-        nom = "";
-        prenom = "";
-        adresse = "";
-        id_bancaire = "";
-        connecte = false;
-        nb_abandon = 0;
+        utilisateurActif.setLogin("");
+        utilisateurActif.setPass("");
+        utilisateurActif.setAdresse("");
+        utilisateurActif.setNom("");
+        utilisateurActif.setPrenom("");
+        utilisateurActif.setIdBancaire("");
+        utilisateurActif.setNbAbandon(0);
+        utilisateurActif.setConnecte(false);
     }
 
     public Users getUtilisateur() {
-        return utilisateur.findByLogin(login);
+        return utilisateurActif;
     }
 
     public void setUtilisateur(Users user) {
@@ -58,79 +49,70 @@ public class Inscription {
     }
 
     public String getLogin() {
-        return login;
+        return utilisateurActif.getLogin();
     }
 
     public void setLogin(String login) {
-        this.login = login;
+        utilisateurActif.setLogin(login);
     }
 
     public String getPass() {
-        return pass;
+        return utilisateurActif.getPass();
     }
 
     public void setPass(String pass) {
-        this.pass = pass;
+        utilisateurActif.setPass(pass);
     }
 
     public String getNom() {
-        return nom;
+        return utilisateurActif.getNom();
     }
 
     public void setNom(String nom) {
-        this.nom = nom;
+        utilisateurActif.setNom(nom);
     }
 
     public String getPrenom() {
-        return prenom;
+        return utilisateurActif.getPrenom();
     }
 
     public void setPrenom(String prenom) {
-        this.prenom = prenom;
+        utilisateurActif.setPrenom(prenom);
     }
 
     public String getAdresse() {
-        return adresse;
+        return utilisateurActif.getAdresse();
     }
 
     public void setAdresse(String adresse) {
-        this.adresse = adresse;
+        utilisateurActif.setAdresse(adresse);
     }
 
     public String getId_bancaire() {
-        return id_bancaire;
+        return utilisateurActif.getIdBancaire();
     }
 
     public void setId_bancaire(String id_bancaire) {
-        this.id_bancaire = id_bancaire;
+        utilisateurActif.setIdBancaire(id_bancaire);
     }
 
     public boolean isConnecte() {
-        return connecte;
+        return utilisateurActif.getConnecte();
     }
 
     public void setConnecte(boolean connecte) {
-        this.connecte = connecte;
+        utilisateurActif.setConnecte(connecte);
     }
 
     public int getNb_abandon() {
-        return nb_abandon;
+        return utilisateurActif.getNbAbandon();
     }
 
     public void setNb_abandon(int nb_abandon) {
-        this.nb_abandon = nb_abandon;
+        utilisateurActif.setNbAbandon(nb_abandon);
     }
-
     
     public String inscrire() { // TODO : faire fonction qui renvoie l'utilisateur depuis la BDD
-        utilisateurActif.setLogin(login);
-        utilisateurActif.setPass(pass);
-        utilisateurActif.setAdresse(adresse);
-        utilisateurActif.setNom(nom);
-        utilisateurActif.setPrenom(prenom);
-        utilisateurActif.setIdBancaire(id_bancaire);
-        utilisateurActif.setNbAbandon(nb_abandon);
-        utilisateurActif.setConnecte(false);
         utilisateur.create(utilisateurActif);
         return "Utilisateur "+utilisateurActif.getLogin()+" inscrit !";  
     }
