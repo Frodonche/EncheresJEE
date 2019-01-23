@@ -5,6 +5,7 @@
  */
 package manage;
 
+import javax.ejb.EJB;
 import users.Utilisateur;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -21,8 +22,8 @@ import utils.SessionUtils;
 @RequestScoped
 public class Connection {
 
-    @Inject 
-    UsersFacade utilisateur;
+    @EJB 
+    private UsersFacade utilisateur;
 
     private String login;
     private String pass;

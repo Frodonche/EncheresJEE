@@ -5,10 +5,12 @@
  */
 package manage;
 
+import entity.Users;
 import users.Utilisateur;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import session.UsersFacade;
 
 /**
  *
@@ -19,8 +21,9 @@ import javax.inject.Named;
 public class Inscription {
 
     @Inject 
-    Utilisateur utilisateur;
+    UsersFacade utilisateur;
 
+    Users utilisateurActif;
     private String login;
     private String pass;
     private String nom;
@@ -35,6 +38,7 @@ public class Inscription {
      * Creates a new instance of Hello
      */
     public Inscription() {
+        utilisateurActif = new Users();
         login = "";
         pass = "";
         nom = "";
@@ -45,12 +49,12 @@ public class Inscription {
         nb_abandon = 0;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public Users getUtilisateur() {
+        return utilisateur.findByLogin(login);
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public void setUtilisateur(Users user) {
+        utilisateur.edit(user);
     }
 
     public String getLogin() {
@@ -119,7 +123,16 @@ public class Inscription {
 
     
     public String inscrire() { // TODO : faire fonction qui renvoie l'utilisateur depuis la BDD
-        return utilisateur.inscrire(login, pass, nom, prenom, adresse, id_bancaire, connecte, nb_abandon);  
+        utilisateurActif.setLogin(login);
+        utilisateurActif.setPass(pass);
+        utilisateurActif.setAdresse(adresse);
+        utilisateurActif.setNom(nom);
+        utilisateurActif.setPrenom(prenom);
+        utilisateurActif.setIdBancaire(id_bancaire);
+        utilisateurActif.setNbAbandon(nb_abandon);
+        utilisateurActif.setConnecte(false);
+        utilisateur.create(utilisateurActif);
+        return "Utilisateur "+utilisateurActif.getLogin()+" inscrit !";  
     }
     
 }

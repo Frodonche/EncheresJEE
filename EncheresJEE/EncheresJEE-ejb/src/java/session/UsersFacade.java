@@ -47,7 +47,10 @@ public class UsersFacade extends AbstractFacade<Users> {
     @PermitAll
     public void deconnecter(String login){
         Users find = this.findByLogin(login);
-        if(find != null)find.setConnecte(false);
+        if(find != null){
+            find.setConnecte(false);
+            this.getEntityManager().persist(find);
+        }
     }
     
     @PermitAll
