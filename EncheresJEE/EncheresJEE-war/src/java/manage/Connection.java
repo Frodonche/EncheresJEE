@@ -5,6 +5,7 @@
  */
 package manage;
 
+import cookies.CookieGestion;
 import javax.ejb.EJB;
 import users.Utilisateur;
 import javax.enterprise.context.RequestScoped;
@@ -85,8 +86,11 @@ public class Connection {
             failure = false;
             //utilisateur.setConnecte(true);
             
-            HttpSession session = SessionUtils.getSession();
-            session.setAttribute("username", login);
+            /*HttpSession session = SessionUtils.getSession();
+            session.setAttribute("username", login);*/
+            
+            CookieGestion.getInstance().createCookie("login", login, 1800);
+            
             redirectionPage = "index?faces-redirect=true"; // mettre un accueil.xhtml a terme
         } else {
             failure = true;
@@ -99,8 +103,11 @@ public class Connection {
     public String deconnecter() {
         utilisateur.deconnecter(login);
         
-        HttpSession session = SessionUtils.getSession();
-        session.invalidate();
+        /*HttpSession session = SessionUtils.getSession();
+        session.invalidate();*/
+        
+        CookieGestion.getInstance().deleteCookie("login");
+        
         return "login";
     }
     
