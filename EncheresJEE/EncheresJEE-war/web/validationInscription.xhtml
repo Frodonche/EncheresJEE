@@ -18,10 +18,14 @@
                 <br/>
                 <br/>
 
-                <h:outputText value="#{inscription.inscrire()}" />
-                <br/>
-                Vous pouvez maintenant vous <a href="./login.xhtml">connecter</a> !
-                
+                <div class="container">
+                    <div class="jumbotron">
+                      <h:outputText value="#{inscription.inscrire()}" />    
+                      <br/>
+                      <p>Vous pouvez maintenant vous <a href="./login.xhtml">connecter</a> !</p>
+                    </div>         
+                </div>
+       
             </ui:define>
         </ui:composition>
     </h:body>
