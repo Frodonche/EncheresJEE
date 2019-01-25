@@ -27,8 +27,14 @@ public class CookieGestion {
     }
     
     public void createCookie(String name, String value, int age) {
+        HttpServletRequest request = (HttpServletRequest) FacesContext
+                .getCurrentInstance()
+                .getExternalContext()
+                .getRequest();
+        
         Cookie cookie = new Cookie(name, value);
         cookie.setMaxAge(age);
+        cookie.setPath(request.getContextPath());
         
         HttpServletResponse response = (HttpServletResponse) FacesContext
                 .getCurrentInstance()
@@ -38,8 +44,14 @@ public class CookieGestion {
     }
     
     public void deleteCookie(String name) {
+        HttpServletRequest request = (HttpServletRequest) FacesContext
+                .getCurrentInstance()
+                .getExternalContext()
+                .getRequest();
+        
         Cookie cookie = new Cookie(name, "");
         cookie.setMaxAge(0);
+        cookie.setPath(request.getContextPath());
         
         HttpServletResponse response = (HttpServletResponse) FacesContext
                 .getCurrentInstance()
@@ -55,9 +67,11 @@ public class CookieGestion {
                 .getRequest();
         
         Cookie[] listeCookies = request.getCookies();
-        for(Cookie c : listeCookies) {
-            if (c.getName().equals(name)) {
-                return c;
+        if (listeCookies != null) {
+            for(Cookie c : listeCookies) {
+                if (c.getName().equals(name)) {
+                    return c;
+                }
             }
         }
         

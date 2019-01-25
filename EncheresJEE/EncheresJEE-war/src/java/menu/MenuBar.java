@@ -6,33 +6,54 @@
 package menu;
 
 
+import cookies.CookieGestion;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
-/**
- *
- * @author cirstea
- */
+
 @Named(value = "menubar")
 @RequestScoped
 public class MenuBar {
 
-    @Inject 
-    NavBarBean navBar;
+    private List<NavBarElement> listeNavBar;
+    private String login;
 
-    public MenuBar() {        
+    /**
+     * Il faudra nettoyer les classes du ejb
+     */
+    public MenuBar() {
+        this.listeNavBar = new ArrayList<>();
+        if (CookieGestion.getInstance().getCookie("login") == null) {
+            this.listeNavBar.add(new NavBarElement("Accueil","index.xhtml"));
+            this.listeNavBar.add(new NavBarElement("Inscription","inscription.xhtml"));
+            this.listeNavBar.add(new NavBarElement("Voir les articles","listArticles.xhtml"));
+            this.listeNavBar.add(new NavBarElement("Connexion","login.xhtml"));
+        } else {
+            this.listeNavBar.add(new NavBarElement("Accueil","index.xhtml"));
+            this.listeNavBar.add(new NavBarElement("Déposer un article","deposerArticle.xhtml"));
+            this.listeNavBar.add(new NavBarElement("Voir les articles","listArticles.xhtml"));
+            this.login = CookieGestion.getInstance().getCookie("login").getValue();
+        }
+            
+        
     }
-   
-    public List<NavBarElement> getNavBarConnecte(){
-        List<NavBarElement> list = navBar.getNavElementListConnecte();    
-        return list;
+
+    public List<NavBarElement> getListeNavBar() {
+        return listeNavBar;
     }
-    
-    public List<NavBarElement> getNavBarDeconnecte(){
-        List<NavBarElement> list = navBar.getNavElementListDeconnecte();  
-        return list;
+
+    public void setListeNavBar(List<NavBarElement> listeNavBar) {
+        this.listeNavBar = listeNavBar;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
     
 }

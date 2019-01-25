@@ -23,27 +23,28 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Menu</a>        
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> 
-              <div class="nav navbar-nav">
-                <c:if test="${empty sessionScope.username}"> <!-- Si un user est deconnecte -->
-                    <ui:repeat var="menuitem" value="#{menubar.getNavBarDeconnecte()}">
-                          <li class="nav-item"><h:link class="nav-link" value="#{menuitem.label}" outcome="#{menuitem.outcome}"/></li>
-                    </ui:repeat>  
-                </c:if> 
-                <c:if test="${!empty sessionScope.username}"> <!-- Si un user est connecte -->
-                    <ui:repeat var="menuitem" value="#{menubar.getNavBarConnecte()}">
-                        <li class="nav-item"><h:link class="nav-link" value="#{menuitem.label}" outcome="#{menuitem.outcome}"/></li>
-                    </ui:repeat>  
-                    <li class="nav-item nav-link dropdown">
-                        <div class="dropdown-toggle" data-toggle="dropdown">#{sessionScope.username}                                
-                            <span class="caret"></span></div>
+                <div class="nav navbar-nav">
 
-                        <ul class="dropdown-menu">
-                            <li class="nav-item"><h:link class="nav-link" value="Mes enchères" outcome="encheres.xhtml"/></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><h:link class="nav-link" value="Deconnexion" outcome="#{connection.deconnecter()}"/></li>
-                </c:if>        
-              </div>
+                    <ui:repeat var="menuitem" value="#{menubar.listeNavBar}">
+                        <li class="nav-item"><h:link class="nav-link" value="#{menuitem.label}" outcome="#{menuitem.outcome}"/></li>
+                    </ui:repeat>
+                    <c:if test="#{!empty menubar.login}">
+                        <li class="nav-item nav-link dropdown">
+                            <div class="dropdown-toggle" data-toggle="dropdown">#{menubar.login}                                
+                                <span class="caret"></span>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><h:link class="nav-link" value="Mes enchères" outcome="encheres.xhtml"/></li>
+                            </ul>
+                        </li>
+                        <h:form>
+                            <li class="nav-item">
+                                <h:commandLink class="nav-link" value="Déconnexion" action="#{connection.deconnecter()}"/>
+                            </li>
+                        </h:form>
+                    </c:if>
+                  
+                </div>
             </div>
          </nav>
         <!-- Fin barre de menu -->

@@ -7,13 +7,9 @@ package manage;
 
 import cookies.CookieGestion;
 import javax.ejb.EJB;
-import users.Utilisateur;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 import session.UsersFacade;
-import utils.SessionUtils;
 
 /**
  *
@@ -34,6 +30,7 @@ public class Connection {
    
     private static String failureMessage = "Mauvaise combinaison login / mot de passe";
     private boolean failure;
+    
     
     /**
      * Creates a new instance of Hello
@@ -85,16 +82,13 @@ public class Connection {
         if(success){
             failure = false;
             //utilisateur.setConnecte(true);
-            
-            /*HttpSession session = SessionUtils.getSession();
-            session.setAttribute("username", login);*/
-            
+
             CookieGestion.getInstance().createCookie("login", login, 1800);
             
             redirectionPage = "index?faces-redirect=true"; // mettre un accueil.xhtml a terme
         } else {
             failure = true;
-            redirectionPage = "login";
+            redirectionPage = "login?faces-redirect=true";
         }
         
         return redirectionPage;
@@ -103,12 +97,9 @@ public class Connection {
     public String deconnecter() {
         utilisateur.deconnecter(login);
         
-        /*HttpSession session = SessionUtils.getSession();
-        session.invalidate();*/
-        
         CookieGestion.getInstance().deleteCookie("login");
         
-        return "login";
+        return "login?faces-redirect=true";
     }
     
     public boolean estConnecte(){
