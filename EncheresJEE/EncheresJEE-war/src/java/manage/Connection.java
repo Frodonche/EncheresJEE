@@ -82,8 +82,11 @@ public class Connection {
         if(success){
             failure = false;
             //utilisateur.setConnecte(true);
-
+            
+            int id = utilisateur.findByLogin(login).getId();
+            
             CookieGestion.getInstance().createCookie("login", login, 1800);
+            CookieGestion.getInstance().createCookie("id", ""+id, 1800);
             
             redirectionPage = "index?faces-redirect=true"; // mettre un accueil.xhtml a terme
         } else {
@@ -98,6 +101,7 @@ public class Connection {
         utilisateur.deconnecter(login);
         
         CookieGestion.getInstance().deleteCookie("login");
+        CookieGestion.getInstance().deleteCookie("id");
         
         return "login?faces-redirect=true";
     }

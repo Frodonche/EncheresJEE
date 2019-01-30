@@ -13,6 +13,7 @@ import entity.Categories;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import session.ArticlesFacade;
 import session.CategoriesFacade;
 import session.UsersFacade;
@@ -35,8 +36,13 @@ public class DeposerArticle {
     Articles articleActif;
     
     public DeposerArticle(){
+
+    }
+    
+    @PostConstruct
+    public void setInitializeValue(){
         this.articleActif = new Articles();
-        this.articleActif.setIdSellUsers(null);
+        this.articleActif.setIdSellUsers(utilisateur.find(1));
         this.articleActif.setIdBuyUsers(null);
         this.articleActif.setNom("");
         this.articleActif.setDescription("");
@@ -44,7 +50,7 @@ public class DeposerArticle {
         this.articleActif.setDateFin(null);
         this.articleActif.setPrixMax(0);
         this.articleActif.setVisible(true);
-        this.articleActif.setNomCategorie(null);
+        this.articleActif.setNomCategorie(categorie.findByName("vase"));
     }
     
     public Articles getArticle(){
@@ -56,11 +62,11 @@ public class DeposerArticle {
     }
     
     public String getIdSellUsers(){
-        return this.articleActif.getIdSellUsers().toString();
+        return "" + this.articleActif.getIdSellUsers();
     }
     
     public String getIdBuyUsers(){
-        return this.articleActif.getIdBuyUsers().toString();
+        return "" + this.articleActif.getIdBuyUsers();
     }
     
     public String getNom(){
@@ -92,6 +98,7 @@ public class DeposerArticle {
     }
     
     public void setIdSellUsers(String id){
+        System.out.println("IDDDDDDDDDDDDDDd       " + id);
         this.articleActif.setIdSellUsers(utilisateur.find(Integer.parseInt(id)));
     }
     

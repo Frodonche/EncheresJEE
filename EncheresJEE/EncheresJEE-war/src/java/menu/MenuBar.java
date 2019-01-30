@@ -19,6 +19,7 @@ public class MenuBar {
 
     private List<NavBarElement> listeNavBar;
     private String login;
+    private int id;
 
     /**
      * Il faudra nettoyer les classes du ejb
@@ -35,6 +36,7 @@ public class MenuBar {
             this.listeNavBar.add(new NavBarElement("Déposer un article","deposerArticle.xhtml"));
             this.listeNavBar.add(new NavBarElement("Voir les articles","listArticles.xhtml"));
             this.login = CookieGestion.getInstance().getCookie("login").getValue();
+            this.id = Integer.parseInt(CookieGestion.getInstance().getCookie("id").getValue());
         }
             
         
@@ -55,5 +57,15 @@ public class MenuBar {
     public void setLogin(String login) {
         this.login = login;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
     
 }

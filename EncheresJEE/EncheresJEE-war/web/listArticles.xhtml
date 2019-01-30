@@ -27,8 +27,9 @@
                                 <p class="card-text">Prix de départ : #{art.prix_init}</p>
                                 <p class="card-text">Prix actuel : #{art.prix_max}</p>
                                 <p class="card-text">Vendeur : #{articles.viewNameUserById(art.id_sell_users)}</p>
-                                <c:if test="${!empty sessionScope.username}">
-                                    <a href="#" class="btn btn-primary">Enchérir</a>
+                                
+                                <c:if test="${!empty menubar.login}">
+                                    <a href="validationEncherir.xhtml" class="btn btn-primary">Enchérir</a>
                                 </c:if>
                             </div>
                         </div>
