@@ -84,7 +84,7 @@ public class Connection {
             //utilisateur.setConnecte(true);
             
             int id = utilisateur.findByLogin(login).getId();
-            
+                        
             CookieGestion.getInstance().createCookie("login", login, 1800);
             CookieGestion.getInstance().createCookie("id", ""+id, 1800);
             

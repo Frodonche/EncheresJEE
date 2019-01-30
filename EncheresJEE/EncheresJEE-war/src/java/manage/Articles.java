@@ -5,12 +5,14 @@
  */
 package manage;
 
+import cookies.CookieGestion;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import session.ArticlesFacade;
+import session.EncheresFacade;
 import session.UsersFacade;
 
 /**
@@ -26,9 +28,41 @@ public class Articles {
     
     @Inject
     UsersFacade utilisateur;
+    
+    @Inject
+    EncheresFacade enchere;
+    
+    private int ench;
 
     public Articles() {     
         
+    }
+    
+    public int getEnch(){
+        return ench;
+    }
+    
+    public void setEnch(int ench){
+        this.ench = ench;
+    }
+    
+    public String encherir(ArticleDef art){
+        int prix = ench + Integer.parseInt(art.getPrix_max());
+        String login = CookieGestion.getInstance().getCookie("login").getValue();
+        
+        //modif article
+        entity.Articles tmp = article.find(Integer.parseInt(art.getId()));
+        tmp.setPrixMax(prix);
+        article.edit(tmp);
+        
+        //creer enchere
+        entity.Encheres encTmp = new entity.Encheres();
+        encTmp.setIdArticles(tmp);
+        encTmp.setIdUsers(utilisateur.findByLogin(login));
+        encTmp.setValue(prix);
+        enchere.create(encTmp);
+        
+        return "listArticles?enchere=true";
     }
     
     public List<ArticleDef> viewAll(){
@@ -49,7 +83,7 @@ public class Articles {
             else s8 = art.getPrixInit().toString();
             s9 = art.getVisible().toString();
             s10 = art.getNomCategorie().getNom();
-            res.add(new ArticleDef(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10));
+            res.add(new ArticleDef(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,this));
         }
         return res;
     }
