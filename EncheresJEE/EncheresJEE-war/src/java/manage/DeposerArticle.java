@@ -13,6 +13,7 @@ import entity.Categories;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import session.ArticlesFacade;
 import session.CategoriesFacade;
 import session.UsersFacade;
@@ -35,16 +36,21 @@ public class DeposerArticle {
     Articles articleActif;
     
     public DeposerArticle(){
+
+    }
+    
+    @PostConstruct
+    public void setInitializeValue(){
         this.articleActif = new Articles();
-        this.articleActif.setIdSellUsers(null);
-        this.articleActif.setIdBuyUsers(null);
+        this.articleActif.setIdSellUsers(utilisateur.find(1));
+        this.articleActif.setIdBuyUsers(utilisateur.find(2));
         this.articleActif.setNom("");
         this.articleActif.setDescription("");
         this.articleActif.setPrixInit(0);
         this.articleActif.setDateFin(null);
         this.articleActif.setPrixMax(0);
         this.articleActif.setVisible(true);
-        this.articleActif.setNomCategorie(null);
+        this.articleActif.setNomCategorie(categorie.findByName("vase"));
     }
     
     public Articles getArticle(){
