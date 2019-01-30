@@ -11,6 +11,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import session.ArticlesFacade;
+import session.UsersFacade;
 
 /**
  *
@@ -22,6 +23,9 @@ public class Articles {
 
     @Inject 
     ArticlesFacade article;
+    
+    @Inject
+    UsersFacade utilisateur;
 
     public Articles() {     
         
@@ -54,7 +58,7 @@ public class Articles {
     }
     
     public String viewNameUserById(String id){
-        return null;
+        return utilisateur.find(Integer.parseInt(id)).getLogin();
     }
     
 }

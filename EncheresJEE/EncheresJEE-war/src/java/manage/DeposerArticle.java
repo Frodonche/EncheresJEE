@@ -43,7 +43,7 @@ public class DeposerArticle {
     public void setInitializeValue(){
         this.articleActif = new Articles();
         this.articleActif.setIdSellUsers(utilisateur.find(1));
-        this.articleActif.setIdBuyUsers(utilisateur.find(2));
+        this.articleActif.setIdBuyUsers(null);
         this.articleActif.setNom("");
         this.articleActif.setDescription("");
         this.articleActif.setPrixInit(0);
@@ -62,11 +62,11 @@ public class DeposerArticle {
     }
     
     public String getIdSellUsers(){
-        return this.articleActif.getIdSellUsers().toString();
+        return "" + this.articleActif.getIdSellUsers();
     }
     
     public String getIdBuyUsers(){
-        return this.articleActif.getIdBuyUsers().toString();
+        return "" + this.articleActif.getIdBuyUsers();
     }
     
     public String getNom(){
@@ -98,6 +98,7 @@ public class DeposerArticle {
     }
     
     public void setIdSellUsers(String id){
+        System.out.println("IDDDDDDDDDDDDDDd       " + id);
         this.articleActif.setIdSellUsers(utilisateur.find(Integer.parseInt(id)));
     }
     

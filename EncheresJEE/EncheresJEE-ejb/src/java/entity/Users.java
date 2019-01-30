@@ -205,7 +205,7 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Users[ id=" + id + " ]";
+        return "" + this.id;
     }
     
 }
