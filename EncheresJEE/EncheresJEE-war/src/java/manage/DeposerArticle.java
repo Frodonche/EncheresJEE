@@ -5,6 +5,7 @@
  */
 package manage;
 
+import cookies.CookieGestion;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -42,7 +43,8 @@ public class DeposerArticle {
     @PostConstruct
     public void setInitializeValue(){
         this.articleActif = new Articles();
-        this.articleActif.setIdSellUsers(utilisateur.find(1));
+        String id = CookieGestion.getInstance().getCookie("id").getValue();
+        this.articleActif.setIdSellUsers(utilisateur.find(Integer.parseInt(id)));
         this.articleActif.setIdBuyUsers(null);
         this.articleActif.setNom("");
         this.articleActif.setDescription("");
@@ -98,7 +100,6 @@ public class DeposerArticle {
     }
     
     public void setIdSellUsers(String id){
-        System.out.println("IDDDDDDDDDDDDDDd       " + id);
         this.articleActif.setIdSellUsers(utilisateur.find(Integer.parseInt(id)));
     }
     
