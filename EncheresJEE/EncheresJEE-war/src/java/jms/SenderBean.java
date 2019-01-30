@@ -46,7 +46,6 @@ public class SenderBean {
     }
 
     public void sendMsgToQueue() {
-        System.out.println("Passage dans sendJMS "+ messageText);
         context.createProducer().send(myFacturationQueue, messageText);
     }
     
