@@ -49,7 +49,7 @@ public class DeposerArticle {
         this.articleActif.setNom("");
         this.articleActif.setDescription("");
         this.articleActif.setPrixInit(0);
-        this.articleActif.setDateFin(null);
+        this.articleActif.setDateFin(Date.valueOf("2020-01-01"));
         this.articleActif.setPrixMax(0);
         this.articleActif.setVisible(true);
         this.articleActif.setNomCategorie(categorie.findByName("vase"));
