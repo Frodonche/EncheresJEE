@@ -29,4 +29,6 @@ public class EncheresFacade extends AbstractFacade<Encheres>{
         super(Encheres.class);
     }
     
+    
+    
 }
