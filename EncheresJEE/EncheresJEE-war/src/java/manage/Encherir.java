@@ -5,6 +5,7 @@
  */
 package manage;
 
+import cookies.CookieGestion;
 import entity.Encheres;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -29,12 +30,12 @@ public class Encherir {
     ArticlesFacade article;
     
     Encheres enchereActif;
-    private String valeurActuelle;
+    private String valeurActuelle;    
     
     public Encherir() {
         this.valeurActuelle = "0";
     }
-
+    
     public String getValeurActuelle() {
         System.out.println("ENTER GET VALUEEEEEEEEEEE");
         return valeurActuelle;
@@ -45,13 +46,17 @@ public class Encherir {
         this.valeurActuelle = valeurActuelle;
     }
         
-    public String encherir(String id, String idBuy){
+    public String encherir(String idBuy){
         entity.Encheres encTmp = new entity.Encheres();
-        encTmp.setIdArticles(article.find(Integer.parseInt(id)));
+        entity.Articles artTmp = article.find(Integer.parseInt(CookieGestion.getInstance().getCookie("article").getValue()));
+        encTmp.setIdArticles(artTmp);
         encTmp.setIdUsers(utilisateur.find(Integer.parseInt(idBuy)));
         System.out.println("VALEURACTUELLE   " + this.valeurActuelle);
         encTmp.setValue(Integer.parseInt(this.valeurActuelle));
         enchere.create(encTmp);
+        artTmp.setPrixMax(artTmp.getPrixMax() + Integer.parseInt(this.valeurActuelle));
+        article.edit(artTmp);
+        
         return "listArticles?faces-redirect=true";
     }
     

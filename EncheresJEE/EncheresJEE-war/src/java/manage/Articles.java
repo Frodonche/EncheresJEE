@@ -127,6 +127,7 @@ public class Articles {
 
     public String validationEncherir(String id) {
         getOne(id);
+        CookieGestion.getInstance().createCookie("article", id, 1800);
         return "validationEncherir.xhtml";
     }
 

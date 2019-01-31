@@ -26,11 +26,9 @@
                         <p class="card-text">Prix actuel : #{art.prix_max}</p>
                         <p class="card-text">Vendeur : #{articles.viewNameUserById(art.id_sell_users)}</p>
                         <c:if test="#{!empty menubar.login}">
-                            <h:form>
-
+                            <h:form id="Encherir">                                
                                 <label>Encherir de : </label><h:inputText value="#{encherir.valeurActuelle}" />
-                                <h:commandButton class="btn btn-primary" action="#{encherir.encherir(art.id, menubar.id)}" ></h:commandButton>
-
+                                <h:commandButton class="btn btn-primary" action="#{encherir.encherir(menubar.id)}" value="Encherir"></h:commandButton>
                             </h:form>
                         </c:if>
                     </div>
