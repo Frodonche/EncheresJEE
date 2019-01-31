@@ -33,8 +33,8 @@
                                         <fieldset>
                                             <label>Encherir de  </label>
 
-                                            <h:inputText value="#{art.enchere}"/>
-                                            <h:commandButton class="btn btn-primary" action="#{art.encherir()}" value="Enchérir" ></h:commandButton>
+                                            <h:inputText id="value" value="#{encherir.value}"/>
+                                            <h:commandButton class="btn btn-primary" action="#{encherir.encherir(art.id, menubar.id)}" value="Enchérir" ></h:commandButton>
                                         </fieldset>
                                     </h:form>
 

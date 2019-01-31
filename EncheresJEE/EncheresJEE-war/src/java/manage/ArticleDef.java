@@ -23,7 +23,6 @@ public class ArticleDef {
     private String prix_max;
     private String visible;
     private String categorie;
-    private String enchere;
     private Articles articles;
     
     public ArticleDef(String s1, String s2, String s3, String s4, String s5, String s6, String s7, String s8, String s9, String s10, Articles art){
@@ -42,21 +41,13 @@ public class ArticleDef {
         articles = art ;
         this.visible = s9;
         this.categorie = s10;
-        this.enchere = "0" ;
     }
 
+    /*
     public void encherir(){
         articles.encherir(this);
-    }
-    
-    public int getEnchere(){
-        return Integer.parseInt(this.enchere);
-    }
- 
-    public void setEnchere(String enchere){
-        this.enchere = enchere ;
-    }
-    
+    }*/
+
     public String getId(){
         return this.id;
     } 
