@@ -49,8 +49,8 @@ public class ArticleDef {
         articles.encherir(this);
     }
     
-    public int getEnchere(){
-        return Integer.parseInt(this.enchere);
+    public String getEnchere(){
+        return this.enchere;
     }
  
     public void setEnchere(String enchere){
