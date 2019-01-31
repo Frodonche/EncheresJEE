@@ -88,7 +88,7 @@ public class Connection {
             CookieGestion.getInstance().createCookie("login", login, 1800);
             CookieGestion.getInstance().createCookie("id", ""+id, 1800);
             
-            redirectionPage = "index?faces-redirect=true"; // mettre un accueil.xhtml a terme
+            redirectionPage = "index?faces-redirect=true";
         } else {
             failure = true;
             redirectionPage = "login?faces-redirect=true";
