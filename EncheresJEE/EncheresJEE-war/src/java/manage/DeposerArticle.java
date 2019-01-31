@@ -5,10 +5,19 @@
  */
 package manage;
 
-import articles.ArticleBean;
+import cookies.CookieGestion;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import entity.Articles;
+import entity.Categories;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import session.ArticlesFacade;
+import session.CategoriesFacade;
+import session.UsersFacade;
 
 /**
  *
@@ -19,103 +28,124 @@ import javax.inject.Named;
 public class DeposerArticle {
     
     @Inject 
-    ArticleBean article;
+    ArticlesFacade article;
+    @Inject 
+    UsersFacade utilisateur;
+    @Inject 
+    CategoriesFacade categorie;
     
-    private String idSellUsers;
-    private String idBuyUsers;
-    private String nom;
-    private String description;
-    private String prixInit;
-    private String dateFin;
-    private String prixMax;
-    private String visible;
-    private String categorie;
+    Articles articleActif;
     
     public DeposerArticle(){
-        this.idSellUsers = "null";
-        this.idBuyUsers = "null";
-        this.nom = "Sans titre";
-        this.description = "Sans titre";
-        this.prixInit = "0";
-        this.dateFin = "01-01-2042";
-        this.prixMax = "null";
-        this.visible = "true";
-        this.categorie = "null";
+
+    }
+    
+    @PostConstruct
+    public void setInitializeValue(){
+        this.articleActif = new Articles();
+        String id = CookieGestion.getInstance().getCookie("id").getValue();
+        this.articleActif.setIdSellUsers(utilisateur.find(Integer.parseInt(id)));
+        this.articleActif.setIdBuyUsers(null);
+        this.articleActif.setNom("");
+        this.articleActif.setDescription("");
+        this.articleActif.setPrixInit(0);
+        this.articleActif.setDateFin(Date.valueOf("2020-01-01"));
+        this.articleActif.setPrixMax(0);
+        this.articleActif.setVisible(true);
+        this.articleActif.setNomCategorie(categorie.findByName("vase"));
+    }
+    
+    public Articles getArticle(){
+        return articleActif;
+    }
+    
+    public void setArticle(Articles art){
+        article.edit(art);
     }
     
     public String getIdSellUsers(){
-        return this.idSellUsers;
+        return "" + this.articleActif.getIdSellUsers();
     }
     
     public String getIdBuyUsers(){
-        return this.idBuyUsers;
+        return "" + this.articleActif.getIdBuyUsers();
     }
     
     public String getNom(){
-        return this.nom;
+        return this.articleActif.getNom();
     }
     
     public String getDescription(){
-        return this.description;
+        return this.articleActif.getDescription();
     }
     
     public String getPrixInit(){
-        return this.prixInit;
+        return "" + this.articleActif.getPrixInit();
     }
     
     public String getDateFin(){
-        return this.dateFin;
+        return "" + this.articleActif.getDateFin();
     }
     
     public String getPrixMax(){
-        return this.prixMax;
+        return "" + this.articleActif.getPrixMax();
     }
     
     public String getVisible(){
-        return this.visible;
+        return "" + this.articleActif.getVisible();
     }
     
     public String getCategorie(){
-        return this.categorie;
+        return "" + this.articleActif.getNomCategorie();
     }
     
     public void setIdSellUsers(String id){
-        this.idSellUsers = id;
+        this.articleActif.setIdSellUsers(utilisateur.find(Integer.parseInt(id)));
     }
     
     public void setIdBuyUsers(String id){
-        this.idBuyUsers = id;
+        this.articleActif.setIdBuyUsers(utilisateur.find(Integer.parseInt(id)));
     }
     
     public void setNom(String nom){
-        this.nom = nom;
+        this.articleActif.setNom(nom);
     }
     
     public void setDescription(String desc){
-        this.description = desc;
+        this.articleActif.setDescription(desc);
     }
     
     public void setPrixInit(String p){
-        this.prixInit = p;
+        this.articleActif.setPrixInit(Integer.parseInt(p));
     }
     
     public void setDateFin(String d){
-        this.dateFin = d;
+        
+        this.articleActif.setDateFin(Date.valueOf(d));
     }
 
     public void setPrixMax(String p){
-        this.prixMax = p;
+        this.articleActif.setPrixMax(Integer.parseInt(p));
     }
     
     public void setVisible(String v){
-        this.visible = v;
+        this.articleActif.setVisible(Boolean.parseBoolean(v));
     }
     
     public void setCategorie(String cat){
-        this.categorie = cat;
+        this.articleActif.setNomCategorie(categorie.findByName(cat));
+    }
+    
+    public List<String> getAllCategories(){
+        List<String> ret = new ArrayList();
+        for(Categories cat : categorie.findAll()){
+            ret.add(cat.getNom());
+        }
+        return ret;
     }
     
     public String validationDepos(){
-        return "TODO";
+        article.create(articleActif);
+        return "Article " + articleActif.getNom()+" déposé !";
     }
 }

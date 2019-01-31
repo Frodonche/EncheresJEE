@@ -6,6 +6,8 @@
 package session;
 
 import entity.Categories;
+import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +29,18 @@ public class CategoriesFacade extends AbstractFacade<Categories> {
 
     public CategoriesFacade() {
         super(Categories.class);
+    }
+    
+    @PermitAll
+    public Categories findByName(String name){
+        List<Categories> categories = this.findAll();
+        Categories find = null;
+        for(Categories cat : categories){
+            if(cat.getNom().equals(name)){
+                find = cat;
+            }
+        }
+        return find;
     }
     
 }

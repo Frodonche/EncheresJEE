@@ -64,7 +64,7 @@ public class Articles implements Serializable {
     @Column(name = "PRIX_MAX")
     private Integer prixMax;
     @Column(name = "VISIBLE")
-    private Boolean visible;
+    private boolean visible;
     @ManyToMany(mappedBy = "articlesCollection")
     private Collection<Paniers> paniersCollection;
     @JoinColumn(name = "NOM_CATEGORIE", referencedColumnName = "NOM")

@@ -5,23 +5,22 @@
  */
 package manage;
 
-import users.Utilisateur;
+import cookies.CookieGestion;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
-import utils.SessionUtils;
+import session.UsersFacade;
 
 /**
  *
- * @author cirstea
+ * @author gui
  */
 @Named(value = "connection")
 @RequestScoped
 public class Connection {
 
-    @Inject 
-    Utilisateur utilisateur;
+    @EJB 
+    private UsersFacade utilisateur;
 
     private String login;
     private String pass;
@@ -32,6 +31,7 @@ public class Connection {
     private static String failureMessage = "Mauvaise combinaison login / mot de passe";
     private boolean failure;
     
+    
     /**
      * Creates a new instance of Hello
      */
@@ -41,11 +41,11 @@ public class Connection {
         failure = false;
     }
 
-    public Utilisateur getUtilisateur() {
+    public UsersFacade getUtilisateur() {
         return utilisateur;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
+    public void setUtilisateur(UsersFacade utilisateur) {
         this.utilisateur = utilisateur;
     }
 
@@ -81,33 +81,37 @@ public class Connection {
         // Sinon avertir que la connection a échoué
         if(success){
             failure = false;
-            utilisateur.setConnecte(true);
+            //utilisateur.setConnecte(true);
             
-            HttpSession session = SessionUtils.getSession();
-            session.setAttribute("username", login);
+            int id = utilisateur.findByLogin(login).getId();
+                        
+            CookieGestion.getInstance().createCookie("login", login, 1800);
+            CookieGestion.getInstance().createCookie("id", ""+id, 1800);
+            
             redirectionPage = "index?faces-redirect=true"; // mettre un accueil.xhtml a terme
         } else {
             failure = true;
-            redirectionPage = "login";
+            redirectionPage = "login?faces-redirect=true";
         }
         
         return redirectionPage;
     }
     
     public String deconnecter() {
-        utilisateur.setConnecte(false);
+        utilisateur.deconnecter(login);
         
-        HttpSession session = SessionUtils.getSession();
-        session.invalidate();
-        return "login";
+        CookieGestion.getInstance().deleteCookie("login");
+        CookieGestion.getInstance().deleteCookie("id");
+        
+        return "login?faces-redirect=true";
     }
     
     public boolean estConnecte(){
-        return utilisateur.isConnecte();
+        return utilisateur.findByLogin(login).getConnecte();
     }
     
     public String getLoginConnecte(){
-        return utilisateur.getLogin();
+        return utilisateur.findByLogin(login).getLogin();
     }
 
 }

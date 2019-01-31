@@ -67,7 +67,7 @@ public class Users implements Serializable {
     @Column(name = "ID_BANCAIRE")
     private String idBancaire;
     @Column(name = "CONNECTE")
-    private Boolean connecte;
+    private boolean connecte;
     @Column(name = "NB_ABANDON")
     private Integer nbAbandon;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsers")
@@ -205,7 +205,7 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Users[ id=" + id + " ]";
+        return "" + this.id;
     }
     
 }
