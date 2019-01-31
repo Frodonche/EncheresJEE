@@ -29,25 +29,28 @@ public class Encherir {
     ArticlesFacade article;
     
     Encheres enchereActif;
-    private String value;
+    private String valeurActuelle;
     
-    public Encherir(){
-        this.value = "0";
+    public Encherir() {
+        this.valeurActuelle = "0";
     }
 
-    public String getValue() {
-        return value;
+    public String getValeurActuelle() {
+        System.out.println("ENTER GET VALUEEEEEEEEEEE");
+        return valeurActuelle;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setValeurActuelle(String valeurActuelle) {
+        System.out.println("ENTER SET VALUEEEEEEEEEEE");
+        this.valeurActuelle = valeurActuelle;
     }
         
     public String encherir(String id, String idBuy){
         entity.Encheres encTmp = new entity.Encheres();
         encTmp.setIdArticles(article.find(Integer.parseInt(id)));
         encTmp.setIdUsers(utilisateur.find(Integer.parseInt(idBuy)));
-        encTmp.setValue(Integer.parseInt(this.value));
+        System.out.println("VALEURACTUELLE   " + this.valeurActuelle);
+        encTmp.setValue(Integer.parseInt(this.valeurActuelle));
         enchere.create(encTmp);
         return "listArticles?faces-redirect=true";
     }
