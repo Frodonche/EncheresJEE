@@ -117,10 +117,12 @@ public class DeposerArticle {
     
     public void setPrixInit(String p){
         this.articleActif.setPrixInit(Integer.parseInt(p));
+        if(Integer.parseInt(p) > this.articleActif.getPrixMax()){
+            this.articleActif.setPrixMax(Integer.parseInt(p)); 
+        }
     }
     
     public void setDateFin(String d){
-        
         this.articleActif.setDateFin(Date.valueOf(d));
     }
 
