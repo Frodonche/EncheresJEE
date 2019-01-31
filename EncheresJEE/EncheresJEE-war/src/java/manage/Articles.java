@@ -25,29 +25,18 @@ public class Articles {
 
     @Inject 
     ArticlesFacade article;
-    
     @Inject
-    UsersFacade utilisateur;
-    
+    UsersFacade utilisateur;  
     @Inject
-    EncheresFacade enchere;
-    
-    private int ench;
-
+    EncheresFacade enchere;    
+            
     public Articles() {     
         
     }
     
-    public int getEnch(){
-        return ench;
-    }
-    
-    public void setEnch(int ench){
-        this.ench = ench;
-    }
-    
+    /*
     public String encherir(ArticleDef art){
-        int prix = ench /*+ Integer.parseInt(art.getPrix_max())*/;
+        int prix = ench /*+ Integer.parseInt(art.getPrix_max())*//*;
         String login = CookieGestion.getInstance().getCookie("login").getValue();
         
         //modif article
@@ -64,7 +53,7 @@ public class Articles {
         enchere.create(encTmp);
         
         return "listArticles?faces-redirect=true";
-    }
+    }*/
     
     public List<ArticleDef> viewAll(){
         List<entity.Articles> arts = article.findAll();
