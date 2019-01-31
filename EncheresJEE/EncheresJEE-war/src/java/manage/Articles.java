@@ -136,6 +136,8 @@ public class Articles {
     }
 
     public String viewNameUserById(String id) {
+        if (id.equals("null"))
+            return "Aucun enchérisseur";
         return utilisateur.find(Integer.parseInt(id)).getLogin();
     }
 

@@ -25,6 +25,7 @@
                         <p class="card-text">Prix de départ : #{art.prix_init}</p>
                         <p class="card-text">Prix actuel : #{art.prix_max}</p>
                         <p class="card-text">Vendeur : #{articles.viewNameUserById(art.id_sell_users)}</p>
+                        <p class="card-text">Dernier enchérisseur : #{articles.viewNameUserById(art.id_buy_users)}</p>
                         <c:if test="#{!empty menubar.login}">
                             <h:form id="Encherir">                                
                                 <label>Encherir de : </label><h:inputText value="#{encherir.valeurActuelle}" />

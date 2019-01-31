@@ -55,6 +55,7 @@ public class Encherir {
         encTmp.setValue(Integer.parseInt(this.valeurActuelle));
         enchere.create(encTmp);
         artTmp.setPrixMax(artTmp.getPrixMax() + Integer.parseInt(this.valeurActuelle));
+        artTmp.setIdBuyUsers(utilisateur.find(Integer.parseInt(idBuy)));
         article.edit(artTmp);
         
         return "listArticles?faces-redirect=true";
