@@ -1,11 +1,13 @@
 package jms;
 
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.inject.Inject;
+
 import javax.jms.JMSConnectionFactory;
 import javax.jms.JMSContext;
 import javax.jms.JMSDestinationDefinition;
@@ -13,9 +15,7 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.Queue;
-
 import javax.jms.TextMessage;
-
 
 @JMSDestinationDefinition(name = "java:module/jms/myFacturationQueueRequest", interfaceName = "javax.jms.Queue", resourceAdapter = "jmsra", destinationName = "myFacturationQueueRequest")
 @MessageDriven(activationConfig = {
@@ -44,13 +44,6 @@ public class MessageDrivenReceiver implements MessageListener {
             // Envoi de la réponse
             context.createProducer().send(myFacturationQueue, msgString + " REPONSE EN PLUS");
             
-
-
-
-            
-            //SenderBean sender = new SenderBean();
-            //sender.setMessageText(msgString + " REPONSE EN PLUS");
-            //sender.sendMsgToQueue();
             
         } catch (JMSException ex) {
             Logger.getLogger(MessageDrivenReceiver.class.getName()).log(Level.SEVERE, null, ex);

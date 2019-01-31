@@ -6,9 +6,14 @@
 package session;
 
 import entity.Articles;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -27,6 +32,17 @@ public class ArticlesFacade extends AbstractFacade<Articles> {
 
     public ArticlesFacade() {
         super(Articles.class);
+    }
+ 
+    @Override
+    public List<Articles> findAll() {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Articles> q = cb.createQuery(Articles.class);
+        Root<Articles> c = q.from(Articles.class);
+       
+        q.select(c).where(cb.equal(c.get("visible"), "true"));
+        return getEntityManager().createQuery(q).getResultList();
     }
     
 }
