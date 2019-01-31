@@ -8,7 +8,9 @@ package manage;
 import cookies.CookieGestion;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import session.ArticlesFacade;
@@ -23,85 +25,129 @@ import session.UsersFacade;
 @RequestScoped
 public class Articles {
 
-    @Inject 
+    @Inject
     ArticlesFacade article;
     @Inject
-    UsersFacade utilisateur;  
+    UsersFacade utilisateur;
     @Inject
-    EncheresFacade enchere;    
-            
-    public Articles() {     
-        
+    EncheresFacade enchere;
+
+    private ArticleDef def;
+    private String enchereActuel;
+
+    public Articles() {
+        enchereActuel = "0";
     }
-    
-    /*
-    public String encherir(ArticleDef art){
-        int prix = ench /*+ Integer.parseInt(art.getPrix_max())*//*;
+
+    public String getEnchereActuel() {
+        return this.enchereActuel;
+    }
+
+    public void setEnchereActuel(String enchere) {
+        this.enchereActuel = enchere;
+    }
+
+    public String encherir(String id) {
+        int prix = Integer.parseInt(enchereActuel);
         String login = CookieGestion.getInstance().getCookie("login").getValue();
-        
+
         //modif article
-        entity.Articles tmp = article.find(Integer.parseInt(art.getId()));
+        entity.Articles tmp = article.find(Integer.parseInt(id));
         tmp.setPrixMax(prix);
         article.edit(tmp);
-        
-        
+
         //creer enchere
         entity.Encheres encTmp = new entity.Encheres();
         encTmp.setIdArticles(tmp);
         encTmp.setIdUsers(utilisateur.findByLogin(login));
         encTmp.setValue(prix);
         enchere.create(encTmp);
-        
+
         return "listArticles?faces-redirect=true";
-    }*/
-    
-    public List<ArticleDef> viewAll(){
+    }
+
+    public List<ArticleDef> viewAll() {
         List<entity.Articles> arts = article.findAll();
         List<ArticleDef> res = new ArrayList();
-        String s1,s2,s3,s4,s5,s6,s7,s8,s9,s10;
-       
-        for(entity.Articles art : arts){
+        String s1, s2, s3, s4, s5, s6, s7, s8, s9, s10;
+
+        for (entity.Articles art : arts) {
             s1 = art.getId().toString();
-                s2 = art.getIdSellUsers().getId().toString();
-                if (art.getIdBuyUsers()!=null) {
-                    s3 = art.getIdBuyUsers().getId().toString();
-                } else {
-                    s3 = "null";
-                }
-                s4 = art.getNom();
-                s5 = art.getDescription();
-                s6 = art.getPrixInit().toString();
-                s7 = art.getDateFin().toString();
-                if (art.getPrixMax()!=null) {
-                    s8 = art.getPrixMax().toString();
-                } else {
-                    s8 = art.getPrixInit().toString();
-                }
-                s9 = art.getVisible().toString();
-                s10 = art.getNomCategorie().getNom();
-                res.add(new ArticleDef(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,this));
+            s2 = art.getIdSellUsers().getId().toString();
+            if (art.getIdBuyUsers() != null) {
+                s3 = art.getIdBuyUsers().getId().toString();
+            } else {
+                s3 = "null";
+            }
+            s4 = art.getNom();
+            s5 = art.getDescription();
+            s6 = art.getPrixInit().toString();
+            s7 = art.getDateFin().toString();
+            if (art.getPrixMax() != null) {
+                s8 = art.getPrixMax().toString();
+            } else {
+                s8 = art.getPrixInit().toString();
+            }
+            s9 = art.getVisible().toString();
+            s10 = art.getNomCategorie().getNom();
+            res.add(new ArticleDef(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, this));
         }
         return res;
     }
-    
-    public List<String> getCat(){
+
+    public ArticleDef getOne(String id) {
+        entity.Articles art = article.find(Integer.parseInt(id));
+        String s1, s2, s3, s4, s5, s6, s7, s8, s9, s10;
+
+        s1 = art.getId().toString();
+        s2 = art.getIdSellUsers().getId().toString();
+        if (art.getIdBuyUsers() != null) {
+            s3 = art.getIdBuyUsers().getId().toString();
+        } else {
+            s3 = "null";
+        }
+        s4 = art.getNom();
+        s5 = art.getDescription();
+        s6 = art.getPrixInit().toString();
+        s7 = art.getDateFin().toString();
+        if (art.getPrixMax() != null) {
+            s8 = art.getPrixMax().toString();
+        } else {
+            s8 = art.getPrixInit().toString();
+        }
+        s9 = art.getVisible().toString();
+        s10 = art.getNomCategorie().getNom();
+        def = new ArticleDef(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, this);
+        return def;
+    }
+
+    public ArticleDef getOne() {
+        return def;
+    }
+
+    public String validationEncherir(String id) {
+        getOne(id);
+        return "validationEncherir.xhtml";
+    }
+
+    public List<String> getCat() {
         return null;
     }
-    
-    public String viewNameUserById(String id){
+
+    public String viewNameUserById(String id) {
         return utilisateur.find(Integer.parseInt(id)).getLogin();
     }
-    
-    public List<ArticleDef> viewArticlesUserLogged(){
+
+    public List<ArticleDef> viewArticlesUserLogged() {
         List<entity.Articles> arts = article.findAll();
         List<ArticleDef> res = new ArrayList();
-        String s1,s2,s3,s4,s5,s6,s7,s8,s9,s10;
+        String s1, s2, s3, s4, s5, s6, s7, s8, s9, s10;
         int id = Integer.parseInt(CookieGestion.getInstance().getCookie("id").getValue());
         for (entity.Articles art : arts) {
             if (art.getIdSellUsers().getId() == id) {
                 s1 = art.getId().toString();
                 s2 = art.getIdSellUsers().getId().toString();
-                if (art.getIdBuyUsers()!=null) {
+                if (art.getIdBuyUsers() != null) {
                     s3 = art.getIdBuyUsers().getId().toString();
                 } else {
                     s3 = "null";
@@ -110,18 +156,18 @@ public class Articles {
                 s5 = art.getDescription();
                 s6 = art.getPrixInit().toString();
                 s7 = art.getDateFin().toString();
-                if (art.getPrixMax()!=null) {
+                if (art.getPrixMax() != null) {
                     s8 = art.getPrixMax().toString();
                 } else {
                     s8 = art.getPrixInit().toString();
                 }
                 s9 = art.getVisible().toString();
                 s10 = art.getNomCategorie().getNom();
-                res.add(new ArticleDef(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,this));
+                res.add(new ArticleDef(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, this));
             }
         }
-        
+
         return res;
     }
-    
+
 }

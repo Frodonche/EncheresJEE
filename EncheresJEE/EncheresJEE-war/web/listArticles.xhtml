@@ -19,6 +19,7 @@
 
                 <div class="container">
                     <h2 class="form-signin-heading">Liste des articles</h2>
+
                     <ui:repeat var="art" value="#{articles.viewAll()}">
 
                         <div class="card">
@@ -31,9 +32,7 @@
                                 <c:if test="#{!empty menubar.login}">
                                     <h:form>
                                         <fieldset>
-                                            <label for="value">Encherir </label>
-                                            <h:inputText id="value" value="#{encherir.valeurActuelle}"/>
-                                            <h:commandButton class="btn btn-primary" action="#{encherir.encherir(art.id, menubar.id)}" value="Enchérir" ></h:commandButton>
+                                            <h:commandButton class="btn btn-primary" action="#{articles.validationEncherir(art.id)}" value="Enchérir" ></h:commandButton>
                                         </fieldset>
                                     </h:form>
                                 </c:if>
@@ -41,7 +40,8 @@
                         </div>
 
                         <br/>
-                    </ui:repeat>     
+                    </ui:repeat>  
+
                 </div>
             </ui:define>
         </ui:composition>
