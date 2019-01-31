@@ -22,7 +22,7 @@ import javax.jms.Queue;
 @RequestScoped
 public class SenderBean {
 
-    @Resource(mappedName = "java:module/jms/myFacturationQueue")
+    @Resource(mappedName = "java:module/jms/myFacturationQueueRequest")
     private Queue myFacturationQueue;
 
     @Inject

@@ -33,7 +33,7 @@ public class ReceiverBean {
      */
     @Inject
     private JMSContext context;
-    @Resource(lookup = "java:module/jms/myFacturationQueue")
+    @Resource(lookup = "java:module/jms/myFacturationQueueRequest")
     private Queue queue;
     public ReceiverBean() {
     }
