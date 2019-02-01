@@ -53,8 +53,8 @@ public class Promotions implements Serializable {
     private String code;
     @Column(name = "NB")
     private Integer nb;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPromotions")
-    private Collection<Paniers> paniersCollection;
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "idPromotions")
+    //private Collection<Paniers> paniersCollection;
     @JoinColumn(name = "STATUT", referencedColumnName = "STATUT")
     @ManyToOne(optional = false)
     private Statutpromotions statut;
@@ -98,14 +98,14 @@ public class Promotions implements Serializable {
         this.nb = nb;
     }
 
-    @XmlTransient
-    public Collection<Paniers> getPaniersCollection() {
-        return paniersCollection;
-    }
+   // @XmlTransient
+  //  public Collection<Paniers> getPaniersCollection() {
+   //     return paniersCollection;
+   // }
 
-    public void setPaniersCollection(Collection<Paniers> paniersCollection) {
-        this.paniersCollection = paniersCollection;
-    }
+   // public void setPaniersCollection(Collection<Paniers> paniersCollection) {
+   //     this.paniersCollection = paniersCollection;
+   // }
 
     public Statutpromotions getStatut() {
         return statut;

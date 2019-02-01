@@ -34,39 +34,14 @@ public class Promotions {
     }
     
     public entity.Promotions getOne(){
-        return promotions.findAll().get(0);
+        return promotions.findAll().get(promotions.findAll().size()-3);
     }
 
     public entity.Promotions getTwo(){
-        return promotions.findAll().get(1);
+        return promotions.findAll().get(promotions.findAll().size()-2);
     }
     
     public entity.Promotions getThree(){
-        return promotions.findAll().get(2);
-    }
-    
-    @Schedule(hour="0")
-    public void generatePromo(){
-        promotions.remove(promotions.findAll().get(0));
-        entity.Promotions tmp = getRandomPromo();
-        promotions.create(tmp);
-    }
-    
-    
-    private entity.Promotions getRandomPromo(){
-        int rand = (int) (Math.random() * ( 5 ));
-        entity.Promotions tmp = new entity.Promotions();
-        String promo = "";
-        switch(rand){
-            case 0 : promo = "20 % sur tout le site ! A partir de 200€ d'achat"; break;
-            case 1 : promo = "Livraison offerte !" ; break;
-            case 2 : promo = "10€ sur votre prochain achat ! A partir de 50€ d'achat";break;
-            case 3 : promo = "30% sur la catégorie Electroménager" ; break;
-            case 4 : promo = "5% de votre achat reversé à une association" ;break;
-            
-        }
-        tmp.setNom(promo);
-        return tmp;
-    }
-    
+        return promotions.findAll().get(promotions.findAll().size()-1);
+    }    
 }
