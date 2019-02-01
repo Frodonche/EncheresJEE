@@ -99,12 +99,20 @@ public class Encheres {
         entity.Encheres enchPrec = null; //Enchérisseur précédent
         List<entity.Encheres> listeEncheres = enchere.findAll();
         List<entity.Encheres> tmp = new ArrayList<>();
+        List<entity.Encheres> garbage = new ArrayList<>();
         for (entity.Encheres e : listeEncheres) {
-            if (e.getIdArticles().getId() == art.getId())
-                tmp.add(e);
+            if (e.getIdUsers().getId() == ench.getIdUsers().getId()) {
+                garbage.add(e);
+            } else {
+                if (e.getIdArticles().getId() == art.getId())
+                    tmp.add(e);
+            }
         }     
         art.setPrixMax(art.getPrixMax() - ench.getValue());
-        enchere.remove(ench);
+        //enchere.remove(ench);
+        for (entity.Encheres e : garbage) {
+            enchere.remove(e);
+        }
         if (tmp.size() > 1) {
             for (int i = 1; i < tmp.size(); i++) {
                 enchPrec = tmp.get(0);
