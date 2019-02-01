@@ -17,15 +17,15 @@ import javax.jms.MessageListener;
 import javax.jms.Queue;
 import javax.jms.TextMessage;
 
-@JMSDestinationDefinition(name = "java:module/jms/myFacturationQueueRequest", interfaceName = "javax.jms.Queue", resourceAdapter = "jmsra", destinationName = "myFacturationQueueRequest")
+@JMSDestinationDefinition(name = "java:module/jms/myLivraisonQueueRequest", interfaceName = "javax.jms.Queue", resourceAdapter = "jmsra", destinationName = "myLivraisonQueueRequest")
 @MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:module/jms/myFacturationQueueRequest")
+    @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:module/jms/myLivraisonQueueRequest")
     ,
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
 })
 public class MessageDrivenReceiver implements MessageListener {
     
-    @Resource(mappedName = "java:module/jms/myFacturationQueueResponse")
+    @Resource(mappedName = "java:module/jms/myLivraisonQueueResponse")
     private Queue myFacturationQueue;
     
     @Inject

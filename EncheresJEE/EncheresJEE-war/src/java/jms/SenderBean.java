@@ -24,12 +24,16 @@ public class SenderBean {
 
     @Resource(mappedName = "java:module/jms/myFacturationQueueRequest")
     private Queue myFacturationQueue;
+    
+    @Resource(mappedName = "java:module/jms/myLivraisonQueueRequest")
+    private Queue myLivraisonQueue;
 
     @Inject
     @JMSConnectionFactory("java:comp/DefaultJMSConnectionFactory")
     private JMSContext context;
 
-    private String messageText;
+    private String messageTextFacturation;
+    private String messageTextLivraison;
     
     /**
      * Creates a new instance of SenderBean
@@ -37,16 +41,30 @@ public class SenderBean {
     public SenderBean() {
     }
 
-    public String getMessageText() {
-        return messageText;
+    public String getMessageTextFacturation() {
+        return messageTextFacturation;
     }
 
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
+    public void setMessageTextFacturation(String messageText) {
+        this.messageTextFacturation = messageText;
+    }
+    
+    public String getMessageTextLivraison() {
+        return messageTextLivraison;
     }
 
-    public void sendMsgToQueue() {
-        context.createProducer().send(myFacturationQueue, messageText);
+    public void setMessageTextLivraison(String messageText) {
+        this.messageTextLivraison = messageText;
+    }
+
+    public void sendMsgToFacturationQueue(String messageTextFacturation) {
+        this.messageTextFacturation = messageTextFacturation;
+        context.createProducer().send(myFacturationQueue, messageTextFacturation);
+    }
+    
+    public void sendMsgToLivraisonQueue(String messageTextLivraison) {
+        this.messageTextLivraison = messageTextLivraison;
+        context.createProducer().send(myLivraisonQueue, messageTextLivraison);
     }
     
 }

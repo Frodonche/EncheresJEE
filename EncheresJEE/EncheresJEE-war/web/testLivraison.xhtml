@@ -15,19 +15,19 @@
 
                 <h:form class="form-horizontal">
                     <fieldset>
-                        <legend> Test de l'appli facturation </legend>
+                        <legend> Test de l'appli livraison </legend>
                         <h:inputText id="messagetext"
                          title="Message text"
-                         value="#{senderBean.messageTextFacturation}"
+                         value="#{senderBean.messageTextLivraison}"
                          required="true"
                          requiredMessage="Error: Message text is required."
                          maxlength="128"
                          size="32" />
-                        <h:commandButton class="btn btn-primary" value="Envoyer Message" action="#{senderBean.sendMsgToFacturationQueue()}"/>
+                        <h:commandButton class="btn btn-primary" value="Envoyer Message" action="#{senderBean.sendMsgToLivraisonQueue()}"/>
                      <br/>
                  </fieldset>
                 </h:form>
-                <h:outputText value="#{receiverBean.getMessageFacturation()}" style="color:green"/>
+                <h:outputText value="#{receiverBean.getMessageLivraison()}" style="color:green"/>
               
                 
             </ui:define>

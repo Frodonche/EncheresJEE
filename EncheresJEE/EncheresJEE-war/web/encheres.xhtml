@@ -37,7 +37,11 @@
                             <br/>
                             <ul class="list-group">
                                 <ui:repeat var="ench" value="#{encheres.viewAllWon()}">
-                                    <li class="list-group-item">Enchère gagnée sur #{ench.idArticles.nom}</li>
+                                    <li class="list-group-item">Enchère gagnée sur #{ench.idArticles.nom}
+                                        <h:commandButton class="btn btn-primary" action="#{senderBean.sendMsgToFacturationQueue(ench.id)}" value="Demande Facturation"></h:commandButton>
+                                        <h:commandButton class="btn btn-primary" action="#{senderBean.sendMsgToLivraisonQueue(ench.id)}" value="Demande Livraison"></h:commandButton>
+                                      
+                                    </li>
                                 </ui:repeat>
                             </ul>
                         </div>
