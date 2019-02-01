@@ -5,44 +5,26 @@
 
 -- PEUPLEMENT DES TABLES --
 
--- Statut Promotions : (reduction (%) ou bon d'achat (euros))
-INSERT INTO statutpromotions (statut)
- VALUES
- ('reduction'),
- ('bonachat');
+-- Statut Promotions : 
+INSERT INTO statutpromotions (statut, id)
+VALUES
+('statut',1);
 
 -- Promotions :
-INSERT INTO promotions (nom, code, statut, nb)
+INSERT INTO promotions (code,nb,nom,statut)
  VALUES
- ('Bon de première utilisation !', '6CFT4', 'bonachat', 10),
- ('Réduc hiver, vive la fête !', '5DC48', 'reduction', 15);
- 
- -- Users :
-INSERT INTO users (login, pass, nom, prenom, adresse, id_bancaire, connecte, nb_abandon)
- VALUES
- ('Larma', 'pass', 'Weber', 'Laura', '1 rue du Pommier', 'RIBnum1', 0, 0),
- ('Iomide', 'pass', 'Maggioli', 'Steve', '2 rue du Pommier', 'RIBnum2', 0, 0),
- ('UnNainTernaute', 'pass', 'Roth', 'Guillaume', '3 rue du Pommier', 'RIBnum3', 0, 0),
- ('Ateact', 'pass', 'Dalati', 'Tarek', '4 rue du Pommier', 'RIBnum4', 0, 0);
- 
--- Paniers :
-
--- No value, to generate by the application (?)
-
+ (null,2,'promo1','statut'),
+ (null,2,'promo2','statut'),
+ (null,2,'promo3','statut');
 
 -- Catégories :
 INSERT INTO categories (nom)
  VALUES
- ('Meubles'),
- ('Vêtements');
+ ('vase'),
+ ('cadre'),
+ ('vêtements'),
+ ('meubles');
  
-
--- Articles :
-INSERT INTO articles (id_sell_users, id_buy_users, nom, description, prix_init, date_fin, prix_max, visible, nom_categorie)
- VALUES
- (1, null, 'Vase de Birmanie', 'Vase de bourge pleins de dorures toussa', 10, '2019-03-01', null, 1, 'Meubles'),
- (1, null, 'Table de Birmanie', 'Une table chère', 20, '2019-03-01', null, 1, 'Meubles'),
- (2, null, 'Cadre de Birmanie', 'Véritable photo couleur de Marie-Antoinette fournie', 50, '2019-03-01', null, 1, 'Meubles');
  
  
  
