@@ -173,4 +173,15 @@ public class Articles {
         return res;
     }
 
+    public String supprimerArticle(String id) {
+        List<entity.Encheres> listeEncheres = enchere.findAll();
+        for (entity.Encheres e : listeEncheres) {
+            if (e.getIdArticles().getId() == Integer.parseInt(id)) {
+                enchere.remove(e);
+            }
+        }    
+        article.remove(article.find(Integer.parseInt(id)));
+        
+        return "mesArticles.xhtml";
+    }
 }
