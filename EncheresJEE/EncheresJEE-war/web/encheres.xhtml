@@ -24,7 +24,7 @@
                             <ul class="list-group">
                                 <ui:repeat var="ench" value="#{encheres.viewAllNotTerminated()}">            
                                     <h:form id="suppEnch">
-                                        <li class="list-group-item">Enchère de #{ench.value} € sur #{ench.idArticles.nom}"  
+                                        <li class="list-group-item">Enchère de #{ench.value} € sur #{ench.idArticles.nom}  
                                         <h:commandButton class="btn btn-primary" action="#{encheres.supprimerEnchere(ench.id)}" value="Supprimer"></h:commandButton>
                                         </li>
                                     </h:form>
