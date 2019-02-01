@@ -75,12 +75,16 @@ public class Encheres {
         }     
         art.setPrixMax(art.getPrixMax() - ench.getValue());
         enchere.remove(ench);
-        for (int i = 1; i < tmp.size(); i++) {
-            enchPrec = tmp.get(0);
-            if (enchPrec.getId() < tmp.get(i).getId())
-                enchPrec = tmp.get(i);
+        if (tmp.size() > 1) {
+            for (int i = 1; i < tmp.size(); i++) {
+                enchPrec = tmp.get(0);
+                if (enchPrec.getId() < tmp.get(i).getId())
+                    enchPrec = tmp.get(i);
+            }
+            art.setIdBuyUsers(enchPrec.getIdUsers());
+        } else {
+            art.setIdBuyUsers(null);
         }
-        art.setIdBuyUsers(enchPrec.getIdUsers());
         article.edit(art);
         
         return "encheres.xhtml?faces-redirect=true";
