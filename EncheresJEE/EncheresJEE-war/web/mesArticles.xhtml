@@ -28,7 +28,7 @@
                                 <p class="card-text">Prix actuel : #{art.prix_max}</p>
                                 <p class="card-text">Vendeur : #{articles.viewNameUserById(art.id_sell_users)}</p>
                             </div>
-                            <h:form id="Encherir">                                
+                            <h:form id="suppArt">                                
                                 <h:commandButton class="btn btn-primary" action="#{articles.supprimerArticle(art.id)}" value="Supprimer"></h:commandButton>
                             </h:form>
                         </div>

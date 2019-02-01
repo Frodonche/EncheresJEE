@@ -8,9 +8,7 @@ package manage;
 import cookies.CookieGestion;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import session.ArticlesFacade;
@@ -182,6 +180,6 @@ public class Articles {
         }    
         article.remove(article.find(Integer.parseInt(id)));
         
-        return "mesArticles.xhtml";
+        return "mesArticles.xhtml?faces-redirect=true";
     }
 }

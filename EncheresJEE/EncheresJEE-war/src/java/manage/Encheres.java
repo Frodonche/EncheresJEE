@@ -61,4 +61,28 @@ public class Encheres {
         }
         return ret;
     }
+    
+    public String supprimerEnchere(String id) {
+        entity.Encheres ench = enchere.find(Integer.parseInt(id));
+        entity.Articles art = article.find(ench.getIdArticles().getId());
+       
+        entity.Encheres enchPrec = null; //Enchérisseur précédent
+        List<entity.Encheres> listeEncheres = enchere.findAll();
+        List<entity.Encheres> tmp = new ArrayList<>();
+        for (entity.Encheres e : listeEncheres) {
+            if (e.getIdArticles().getId() == art.getId())
+                tmp.add(e);
+        }     
+        art.setPrixMax(art.getPrixMax() - ench.getValue());
+        enchere.remove(ench);
+        for (int i = 1; i < tmp.size(); i++) {
+            enchPrec = tmp.get(0);
+            if (enchPrec.getId() < tmp.get(i).getId())
+                enchPrec = tmp.get(i);
+        }
+        art.setIdBuyUsers(enchPrec.getIdUsers());
+        article.edit(art);
+        
+        return "encheres.xhtml?faces-redirect=true";
+    }
 }
