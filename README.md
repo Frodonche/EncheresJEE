@@ -16,4 +16,4 @@ https://github.com/Frodonche/EncheresJEE.git
 BDD.txt
 
 ## Screen explicatif pour la configuration de la BDD via la console Glassfish :
-tuto-derby-connector-pour-les-teubers.png
+tuto-derby-connector.png
