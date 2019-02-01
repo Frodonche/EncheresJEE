@@ -9,6 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import entity.Articles;
+import entity.Encheres;
 import session.ArticlesFacade;
 import session.CategoriesFacade;
 import session.EncheresFacade;
@@ -36,9 +37,8 @@ public class SupprimerArticle {
     }
     
     public String supprimerArticle(String id){
-        
-                //enchere.remove(enchere.find(Integer.parseInt(id)));
-        //article.remove(article.find(Integer.parseInt(id)));
+        enchere.removeByIdArticles(Integer.parseInt(id));
+        article.remove(article.find(Integer.parseInt(id)));
         return "mesArticles.xhtml";
     }
 }
