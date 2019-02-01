@@ -88,7 +88,7 @@ public class Articles {
             }
             s9 = art.getVisible().toString();
             s10 = art.getNomCategorie().getNom();
-            res.add(new ArticleDef(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, this));
+            res.add(new ArticleDef(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, false, false, this));
         }
         return res;
     }
@@ -115,7 +115,7 @@ public class Articles {
         }
         s9 = art.getVisible().toString();
         s10 = art.getNomCategorie().getNom();
-        def = new ArticleDef(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, this);
+        def = new ArticleDef(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, false, false, this);
         return def;
     }
 
@@ -164,7 +164,7 @@ public class Articles {
                 }
                 s9 = art.getVisible().toString();
                 s10 = art.getNomCategorie().getNom();
-                res.add(new ArticleDef(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, this));
+                res.add(new ArticleDef(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, false, false, this));
             }
         }
 

@@ -43,7 +43,7 @@ public class Encheres {
         for(entity.Encheres ench : enchere.findAll()){
             if(Objects.equals(ench.getIdUsers().getId(), id)){//si l'user correspond a l'enchere
                 if(ench.getIdArticles().getDateFin().after(when))
-                ret.add(ench);
+                    ret.add(ench);
             }
         }
         return ret;
@@ -56,7 +56,37 @@ public class Encheres {
         for(entity.Encheres ench : enchere.findAll()){
             if(Objects.equals(ench.getIdUsers().getId(), id)){//si l'user correspond a l'enchere
                 if(ench.getIdArticles().getDateFin().before(when))
-                ret.add(ench);
+                    ret.add(ench);
+            }
+        }
+        return ret;
+    }
+    
+    public List<entity.Encheres> viewAllWon() {
+        Date when = new java.sql.Date(System.currentTimeMillis());
+        List<entity.Encheres> ret = new ArrayList<entity.Encheres>();
+        Integer id = utilisateur.findByLogin(CookieGestion.getInstance().getCookie("login").getValue()).getId();
+        for(entity.Encheres ench : enchere.findAll()){
+            if(Objects.equals(ench.getIdUsers().getId(), id)){//si l'user correspond a l'enchere
+                if(ench.getIdArticles().getDateFin().before(when)) {
+                    if (ench.getIdArticles().getIdBuyUsers().getId() == id)
+                        ret.add(ench);
+                }               
+            }
+        }
+        return ret;
+    }
+    
+    public List<entity.Encheres> viewAllLost() {
+        Date when = new java.sql.Date(System.currentTimeMillis());
+        List<entity.Encheres> ret = new ArrayList<entity.Encheres>();
+        Integer id = utilisateur.findByLogin(CookieGestion.getInstance().getCookie("login").getValue()).getId();
+        for(entity.Encheres ench : enchere.findAll()){
+            if(Objects.equals(ench.getIdUsers().getId(), id)){//si l'user correspond a l'enchere
+                if(ench.getIdArticles().getDateFin().before(when)) {
+                    if (ench.getIdArticles().getIdBuyUsers().getId() != id)
+                        ret.add(ench);
+                }               
             }
         }
         return ret;

@@ -24,8 +24,11 @@ public class ArticleDef {
     private String visible;
     private String categorie;
     private Articles articles;
+    private boolean facturation;
+    private boolean livraison;
     
-    public ArticleDef(String s1, String s2, String s3, String s4, String s5, String s6, String s7, String s8, String s9, String s10, Articles art){
+    public ArticleDef(String s1, String s2, String s3, String s4, String s5, String s6, String s7, String s8, String s9, String s10, 
+                      boolean s11, boolean s12, Articles art){
         this.id = s1;
         this.id_sell_users = s2;
         this.id_buy_users = s3;
@@ -41,12 +44,9 @@ public class ArticleDef {
         articles = art ;
         this.visible = s9;
         this.categorie = s10;
+        this.facturation = s11;
+        this.livraison = s12;
     }
-
-    /*
-    public void encherir(){
-        articles.encherir(this);
-    }*/
 
     public String getId(){
         return this.id;
@@ -87,5 +87,14 @@ public class ArticleDef {
     public String getCategorie(){
         return this.categorie;
     }
+
+    public boolean isFacturation() {
+        return facturation;
+    }
+
+    public boolean isLivraison() {
+        return livraison;
+    }
+    
 }
 

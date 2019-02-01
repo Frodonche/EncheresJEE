@@ -76,6 +76,10 @@ public class Articles implements Serializable {
     @JoinColumn(name = "ID_SELL_USERS", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Users idSellUsers;
+    @Column(name = "FACTURATION")
+    private boolean facturation;
+    @Column(name = "LIVRAISON")
+    private boolean livraison;
 
     public Articles() {
     }
@@ -171,6 +175,22 @@ public class Articles implements Serializable {
 
     public void setIdSellUsers(Users idSellUsers) {
         this.idSellUsers = idSellUsers;
+    }
+
+    public boolean isFacturation() {
+        return facturation;
+    }
+
+    public void setFacturation(boolean facturation) {
+        this.facturation = facturation;
+    }
+
+    public boolean isLivraison() {
+        return livraison;
+    }
+
+    public void setLivraison(boolean livraison) {
+        this.livraison = livraison;
     }
 
     @Override
