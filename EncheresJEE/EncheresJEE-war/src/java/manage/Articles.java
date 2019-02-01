@@ -128,6 +128,13 @@ public class Articles {
         CookieGestion.getInstance().createCookie("article", id, 1800);
         return "validationEncherir.xhtml";
     }
+    
+    public String validationEncherir(Integer id) {
+        String ide = "" + id;
+        getOne(ide);
+        CookieGestion.getInstance().createCookie("article", ide, 1800);
+        return "validationEncherir.xhtml";
+    }
 
     public List<String> getCat() {
         return null;

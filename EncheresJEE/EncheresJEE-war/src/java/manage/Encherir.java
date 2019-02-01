@@ -37,12 +37,10 @@ public class Encherir {
     }
     
     public String getValeurActuelle() {
-        System.out.println("ENTER GET VALUEEEEEEEEEEE");
         return valeurActuelle;
     }
 
     public void setValeurActuelle(String valeurActuelle) {
-        System.out.println("ENTER SET VALUEEEEEEEEEEE");
         this.valeurActuelle = valeurActuelle;
     }
         
@@ -51,7 +49,6 @@ public class Encherir {
         entity.Articles artTmp = article.find(Integer.parseInt(CookieGestion.getInstance().getCookie("article").getValue()));
         encTmp.setIdArticles(artTmp);
         encTmp.setIdUsers(utilisateur.find(Integer.parseInt(idBuy)));
-        System.out.println("VALEURACTUELLE   " + this.valeurActuelle);
         encTmp.setValue(Integer.parseInt(this.valeurActuelle));
         enchere.create(encTmp);
         artTmp.setPrixMax(artTmp.getPrixMax() + Integer.parseInt(this.valeurActuelle));
