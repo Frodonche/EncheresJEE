@@ -7,7 +7,7 @@ EncheresJEE.ear
 FacturationJEE.ear 
 LivraisonsJEE.ear
 
-# Liens vers le Git :
+# Liens vers le Git pour les sources (.ear disponibles dans les dossiers dist/ de chaque application) :
 https://github.com/Frodonche/EncheresJEE.git
 
 /********** TODO FOR USE **********/
